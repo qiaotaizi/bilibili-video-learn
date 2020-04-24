@@ -1,15 +1,15 @@
 package com.jaiz.study.lesson024;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.UUID;
 
@@ -22,6 +22,11 @@ import java.util.UUID;
  * Node.Properties
  */
 public class App extends Application {
+
+    public static void main(String[] args) {
+        Application.launch(App.class,args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         GridPane root=new GridPane();
@@ -30,13 +35,29 @@ public class App extends Application {
         Label l_name=new Label("账号：");
         Label l_pwd=new Label("密码：");
         TextField t_name=new TextField();
+        //设置鼠标悬停提示
+        t_name.setTooltip(new Tooltip("请输入账号"));
         PasswordField p_pwd=new PasswordField();
+        p_pwd.setTooltip(new Tooltip("请输入密码"));
         Button b_login=new Button("登录");
         Button b_clear=new Button("清除");
 
         b_login.setOnAction(event -> {
             System.out.println("用户名："+t_name.textProperty().get()+",密码："+p_pwd.textProperty().get());
             System.out.println("用户名标签上的用户数据："+l_name.getUserData());
+
+            //动画效果简单示例
+            FadeTransition ft=new FadeTransition();
+            ft.setDuration(Duration.seconds(0.5));
+            ft.setNode(root);
+            ft.setFromValue(0);
+            ft.setToValue(1);
+            ft.play();
+
+            //颜色
+            l_name.setTextFill(Color.RED);
+            l_pwd.setTextFill(Color.RED);
+
         });
         b_clear.setOnAction(event -> {
             t_name.textProperty().setValue("");

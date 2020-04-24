@@ -24,61 +24,65 @@ public class App extends Application {
 
     private ScheduledService<Integer> ss;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    public static void main(String[] args) {
+        Application.launch(App.class, args);
+    }
 
-        AnchorPane root=new AnchorPane();
-        Button b=new Button("点击显示对话框");
+    @Override
+    public void start( Stage primaryStage) throws Exception {
+
+         AnchorPane root = new AnchorPane();
+         Button b = new Button("点击显示对话框");
         root.getChildren().add(b);
         b.setOnAction(event -> {
-            DialogPane dialogPane=new DialogPane();
+             DialogPane dialogPane = new DialogPane();
             dialogPane.setHeaderText("header");
             dialogPane.setContentText("content");
             dialogPane.getButtonTypes().addAll(ButtonType.CLOSE, ButtonType.OK);
-            ImageView iv=new ImageView("/com/jaiz/study/lesson022/icon.png");
+             ImageView iv = new ImageView("/com/jaiz/study/lesson022/icon.png");
             iv.setFitHeight(30);
             iv.setFitWidth(30);
             iv.setLayoutX(50);
             dialogPane.setGraphic(iv);
             dialogPane.setExpandableContent(new Label("扩展内容"));
-            dialogPane.setExpanded(true);//控制扩展内容的默认展示
-            Button close= (Button) dialogPane.lookupButton(ButtonType.CLOSE);
+            dialogPane.setExpanded(true);// 控制扩展内容的默认展示
+             Button close = (Button) dialogPane.lookupButton(ButtonType.CLOSE);
             close.setOnAction(event1 -> {
                 System.out.println("close");
             });
-            Button ok=(Button)dialogPane.lookupButton(ButtonType.OK);
+             Button ok = (Button) dialogPane.lookupButton(ButtonType.OK);
             ok.setOnAction(event1 -> {
                 System.out.println("ok");
             });
 
-            Stage stage=new Stage();
+            Stage stage = new Stage();
             stage.setTitle("对话框");
             stage.setScene(new Scene(dialogPane));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(primaryStage);
             stage.initStyle(StageStyle.UTILITY);
-            //控制后台任务的关闭
-            stage.setOnCloseRequest(event1->{
+            // 控制后台任务的关闭
+            stage.setOnCloseRequest(event1 -> {
                 cancelSchedule();
             });
             stage.show();
 
-
-            //运行后台任务
-            ss=new ScheduledService<Integer>(){
+            // 运行后台任务
+            ss = new ScheduledService<Integer>() {
                 @Override
                 protected Task<Integer> createTask() {
                     return new Task<Integer>() {
 
                         @Override
                         protected Integer call() throws Exception {
-                            //该方法运行于其他线程
-                            System.out.println("ScheduledService.Task.call Thread Name=" + Thread.currentThread().getName());
+                            // 该方法运行于其他线程
+                            System.out.println(
+                                    "ScheduledService.Task.call Thread Name=" + Thread.currentThread().getName());
                             return 1;
                         }
 
                         @Override
-                        protected void updateValue(Integer value) {
+                        protected void updateValue( Integer value) {
                             //该方法运行于JavaFX Application Thread
                             //value是call方法的返回值
                             //如果需要后台任务更新UI，在这个方法中进行

@@ -8,6 +8,7 @@ import javafx.stage.Stage;
  * 模态化窗口
  */
 public class App2 extends Application {
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("窗口模态测试");

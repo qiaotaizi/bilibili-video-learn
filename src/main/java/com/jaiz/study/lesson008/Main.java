@@ -1,10 +1,7 @@
-package com.jaiz.study.lesson001;
+package com.jaiz.study.lesson008;
 
 import javafx.application.Application;
 
-/**
- * javafx hello world
- */
 public class Main {
 
     public static void main(String[] args) {
