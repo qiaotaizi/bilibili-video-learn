@@ -2,6 +2,8 @@ package com.jaiz.study;
 
 import static org.junit.Assert.assertTrue;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCombination;
 import org.junit.Test;
 
 /**
@@ -13,8 +15,8 @@ public class AppTest
      * Rigorous Test :-)
      */
     @Test
-    public void shouldAnswerWithTrue()
+    public void keyCodeTest()
     {
-        assertTrue( true );
+        System.out.println(KeyCombination.SHORTCUT_DOWN);
     }
 }

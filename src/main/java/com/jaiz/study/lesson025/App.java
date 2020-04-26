@@ -31,7 +31,6 @@ public class App extends Application {
 
         root.getChildren().addAll(hyperlink,hyperlink1);
 
-        AppUtils.quickInit(primaryStage,"lesson025",root);
-        primaryStage.show();
+        AppUtils.quickInitMenuBar(primaryStage,"lesson025",root);
     }
 }

@@ -32,6 +32,7 @@ public class DigitalClock extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
         primaryStage.setTitle("Digital Clock");
         AnchorPane root = new AnchorPane();
         Scene scene = new Scene(root, 480, 412);
