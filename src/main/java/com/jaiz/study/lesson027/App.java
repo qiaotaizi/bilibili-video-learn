@@ -77,7 +77,7 @@ public class App extends Application {
 
         root.getChildren().add(menuBar);
 
-        AppUtils.quickInit(primaryStage,"lesson026",root);
+        AppUtils.quickInit(primaryStage,"lesson027",root);
         primaryStage.show();
 
     }

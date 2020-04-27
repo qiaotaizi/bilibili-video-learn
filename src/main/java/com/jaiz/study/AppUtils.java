@@ -47,6 +47,7 @@ public class AppUtils {
 
         close.setOnAction(actionEvent -> {
             stage.close();
+            System.out.println("cmd+q 退出stage");
         });
 
         quickInit(stage,title,root);

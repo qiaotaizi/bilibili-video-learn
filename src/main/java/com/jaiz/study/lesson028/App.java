@@ -89,7 +89,7 @@ public class App extends Application {
 
 
 
-        AppUtils.quickInit(primaryStage,"lesson026",root);
+        AppUtils.quickInit(primaryStage,"lesson028",root);
         primaryStage.show();
     }
 }
