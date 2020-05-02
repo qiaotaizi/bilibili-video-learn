@@ -1,10 +1,10 @@
 package com.jaiz.study.lesson031;
 
-import com.jaiz.study.AppUtils;
+import com.jaiz.study.utils.AppUtils;
 import javafx.application.Application;
-import javafx.geometry.Side;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 

@@ -1,6 +1,6 @@
 package com.jaiz.study.lesson021;
 
-import com.jaiz.study.AppUtils;
+import com.jaiz.study.utils.AppUtils;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Insets;

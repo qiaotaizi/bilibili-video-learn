@@ -1,6 +1,6 @@
 package com.jaiz.study.lesson016;
 
-import com.jaiz.study.AppUtils;
+import com.jaiz.study.utils.AppUtils;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

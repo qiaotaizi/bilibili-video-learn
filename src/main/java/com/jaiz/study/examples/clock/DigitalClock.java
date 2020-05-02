@@ -11,11 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.effect.InnerShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
@@ -24,7 +20,7 @@ import javafx.scene.transform.Shear;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.util.*;
+import java.util.Calendar;
 
 public class DigitalClock extends Application {
 

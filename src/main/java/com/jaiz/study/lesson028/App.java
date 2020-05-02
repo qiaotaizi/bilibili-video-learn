@@ -1,19 +1,10 @@
 package com.jaiz.study.lesson028;
 
-import com.jaiz.study.AppUtils;
+import com.jaiz.study.utils.AppUtils;
 import javafx.application.Application;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 /**
  * 菜单栏续讲2

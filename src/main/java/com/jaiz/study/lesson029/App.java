@@ -1,6 +1,6 @@
 package com.jaiz.study.lesson029;
 
-import com.jaiz.study.AppUtils;
+import com.jaiz.study.utils.AppUtils;
 import javafx.application.Application;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;

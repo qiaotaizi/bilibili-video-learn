@@ -1,6 +1,5 @@
-package com.jaiz.study;
+package com.jaiz.study.utils;
 
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;

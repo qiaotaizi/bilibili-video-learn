@@ -1,11 +1,12 @@
 package com.jaiz.study.lesson026;
 
-import com.jaiz.study.AppUtils;
+import com.jaiz.study.utils.AppUtils;
 import javafx.application.Application;
-import javafx.scene.control.*;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.input.Mnemonic;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
