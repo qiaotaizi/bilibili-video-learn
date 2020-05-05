@@ -53,6 +53,6 @@ public class App extends Application {
 
         root.getChildren().add(tp);
 
-        AppUtils.quickInitMenuBar(primaryStage,"lesson030",root);
+        AppUtils.quickInitMenuBar(primaryStage, this.getClass(),root);
     }
 }

@@ -40,6 +40,6 @@ public class App extends Application {
         accordion.getPanes().addAll(tp,tp2,tp3);
 
         root.getChildren().add(accordion);
-        AppUtils.quickInitMenuBar(primaryStage,"lesson029",root);
+        AppUtils.quickInitMenuBar(primaryStage, this.getClass(),root);
     }
 }

@@ -1,5 +1,6 @@
 package com.jaiz.study.lesson036;
 
+import com.jaiz.study.beans.Student;
 import com.jaiz.study.utils.AppUtils;
 import com.jaiz.study.utils.SimplifiedStringConverter;
 import javafx.application.Application;
@@ -9,7 +10,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
 /**
  * ChoiceBox
@@ -33,16 +33,10 @@ public class App extends Application {
 
         //将cb所含的对象转化为String以进行显示，
         //条件允许的话也可以通过重写对象的toString方法实现
-        cb.setConverter(new StringConverter<Student>() {
+        cb.setConverter(new SimplifiedStringConverter<>() {
             @Override
             public String toString(Student object) {
                 return object.getName();
-            }
-
-            //该方法不会触发，不用处理
-            @Override
-            public Student fromString(String string) {
-                return null;
             }
         });
 
@@ -96,7 +90,7 @@ public class App extends Application {
         root.getChildren().add(hBox);
 
 
-        AppUtils.quickInitMenuBar(primaryStage, "lesson035", root);
+        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
     }
 
     /**

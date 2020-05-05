@@ -40,6 +40,6 @@ public class App extends Application {
 
         root.getChildren().addAll(rb1,rb2,rb3,cb1,cb2,cb3);
 
-        AppUtils.quickInitMenuBar(primaryStage,"lesson031",root);
+        AppUtils.quickInitMenuBar(primaryStage, this.getClass(),root);
     }
 }

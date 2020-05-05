@@ -41,6 +41,6 @@ public class App extends Application {
         root.getChildren().add(bar);
 
 
-        AppUtils.quickInitMenuBar(primaryStage, "lesson035", root);
+        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
     }
 }

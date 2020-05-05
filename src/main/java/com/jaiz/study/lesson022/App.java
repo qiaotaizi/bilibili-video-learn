@@ -29,28 +29,28 @@ public class App extends Application {
     }
 
     @Override
-    public void start( Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
 
-         AnchorPane root = new AnchorPane();
-         Button b = new Button("点击显示对话框");
+        AnchorPane root = new AnchorPane();
+        Button b = new Button("点击显示对话框");
         root.getChildren().add(b);
         b.setOnAction(event -> {
-             DialogPane dialogPane = new DialogPane();
+            DialogPane dialogPane = new DialogPane();
             dialogPane.setHeaderText("header");
             dialogPane.setContentText("content");
             dialogPane.getButtonTypes().addAll(ButtonType.CLOSE, ButtonType.OK);
-             ImageView iv = new ImageView("/com/jaiz/study/lesson022/icon.png");
+            ImageView iv = new ImageView("/com/jaiz/study/lesson022/icon.png");
             iv.setFitHeight(30);
             iv.setFitWidth(30);
             iv.setLayoutX(50);
             dialogPane.setGraphic(iv);
             dialogPane.setExpandableContent(new Label("扩展内容"));
             dialogPane.setExpanded(true);// 控制扩展内容的默认展示
-             Button close = (Button) dialogPane.lookupButton(ButtonType.CLOSE);
+            Button close = (Button) dialogPane.lookupButton(ButtonType.CLOSE);
             close.setOnAction(event1 -> {
                 System.out.println("close");
             });
-             Button ok = (Button) dialogPane.lookupButton(ButtonType.OK);
+            Button ok = (Button) dialogPane.lookupButton(ButtonType.OK);
             ok.setOnAction(event1 -> {
                 System.out.println("ok");
             });
@@ -82,12 +82,12 @@ public class App extends Application {
                         }
 
                         @Override
-                        protected void updateValue( Integer value) {
+                        protected void updateValue(Integer value) {
                             //该方法运行于JavaFX Application Thread
                             //value是call方法的返回值
                             //如果需要后台任务更新UI，在这个方法中进行
-                            System.out.println("ScheduledService.Task.updateValue Thread Name="+Thread.currentThread().getName());
-                            System.out.println("value="+value);
+                            System.out.println("ScheduledService.Task.updateValue Thread Name=" + Thread.currentThread().getName());
+                            System.out.println("value=" + value);
                         }
                     };
                 }
@@ -103,12 +103,12 @@ public class App extends Application {
 
         });
 
-        AppUtils.quickInit(primaryStage,"lesson022",root);
+        AppUtils.quickInit(primaryStage, "lesson022", root);
         primaryStage.show();
     }
 
-    private void cancelSchedule(){
-        if (ss!=null){
+    private void cancelSchedule() {
+        if (ss != null) {
             ss.cancel();
         }
     }

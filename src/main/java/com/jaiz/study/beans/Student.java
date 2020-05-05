@@ -1,4 +1,4 @@
-package com.jaiz.study.lesson036;
+package com.jaiz.study.beans;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @Builder
 @ToString
-class Student {
+public class Student {
 
     private Integer id;
 

@@ -70,6 +70,6 @@ public class App extends Application {
             find_ta.requestFocus();
         });
 
-        AppUtils.quickInitMenuBar(primaryStage, "lesson034", root);
+        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
     }
 }
