@@ -2,6 +2,7 @@ package com.jaiz.study.lesson038;
 
 import com.jaiz.study.beans.Student;
 import com.jaiz.study.utils.AppUtils;
+import com.jaiz.study.utils.Repo;
 import com.jaiz.study.utils.SimplifiedStringConverter;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -24,7 +25,7 @@ public class App extends Application {
 
         ComboBox<Student> cb=new ComboBox<>();
 
-        ObservableList<Student> data=initData();
+        ObservableList<Student> data= Repo.STUDENTS;
         cb.setItems(data);
 
         cb.setFocusTraversable(false);
@@ -48,16 +49,4 @@ public class App extends Application {
         AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
     }
 
-    /**
-     * 数据初始化
-     * @return
-     */
-    private ObservableList<Student> initData() {
-        ObservableList<Student> result= FXCollections.observableArrayList(
-                Student.builder().id(1).name("小明").age(18).build(),
-                Student.builder().id(2).name("小强").age(19).build(),
-                Student.builder().id(3).name("小华").age(17).build()
-        );
-        return result;
-    }
 }

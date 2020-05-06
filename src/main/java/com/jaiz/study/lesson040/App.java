@@ -2,6 +2,7 @@ package com.jaiz.study.lesson040;
 
 import com.jaiz.study.beans.Student;
 import com.jaiz.study.utils.AppUtils;
+import com.jaiz.study.utils.Repo;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +30,7 @@ public class App extends Application {
         AnchorPane root = new AnchorPane();
 
         ComboBox<Student> comboBox=new ComboBox<>();
-        ObservableList<Student> data=initData();
+        ObservableList<Student> data= Repo.STUDENTS;
         HBox hBox=new HBox();
         TextField tf=new TextField();
         Button button=new Button("修改");
@@ -69,18 +70,5 @@ public class App extends Application {
 
 
         AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
-    }
-
-    /**
-     * 数据初始化
-     * @return
-     */
-    private ObservableList<Student> initData() {
-        ObservableList<Student> result= FXCollections.observableArrayList(
-                Student.builder().id(1).name("小明").age(18).build(),
-                Student.builder().id(2).name("小强").age(19).build(),
-                Student.builder().id(3).name("小华").age(17).build()
-        );
-        return result;
     }
 }
