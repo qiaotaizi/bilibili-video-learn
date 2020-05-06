@@ -49,7 +49,13 @@ public class App extends Application {
         spinner1.setEditable(false);
         spinner1.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
 
+        Button btn=new Button("打印当前学生信息");
+        btn.setOnAction(event -> {
+            System.out.println(spinner1.getValue());
+        });
+
         vBox.getChildren().add(spinner1);
+        vBox.getChildren().add(btn);
 
         root.getChildren().add(vBox);
 
