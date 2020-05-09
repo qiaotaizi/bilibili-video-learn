@@ -35,7 +35,7 @@ public class App extends Application {
         spinner.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);//有一些可选的样式
         vBox.getChildren().add(spinner);
 
-        ObservableList<Student> data= Repo.STUDENTS;
+        var data= Repo.STUDENTS;
 
         //如果spinner中绑定对象的话，推荐使用这种初始化方式。
         SpinnerValueFactory.ListSpinnerValueFactory<Student> valueFactory=new SpinnerValueFactory.ListSpinnerValueFactory<>(data);
