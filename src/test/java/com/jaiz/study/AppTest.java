@@ -1,5 +1,6 @@
 package com.jaiz.study;
 
+import com.jaiz.study.utils.Formatters;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.text.Font;
 import org.junit.Test;
@@ -42,4 +43,10 @@ public class AppTest
             System.out.println(family);
         }
     }
+
+    @Test
+    public void formatPrintingTest(){
+        System.out.println(String.format("hello，%s, I'm %s, %d years old this year.", "world", "jaiz", 5));
+    }
+
 }
