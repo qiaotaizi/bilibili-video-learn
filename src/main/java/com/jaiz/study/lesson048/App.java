@@ -38,7 +38,7 @@ public class App extends Application {
         var data= Repo.STUDENTS;
 
         //如果spinner中绑定对象的话，推荐使用这种初始化方式。
-        SpinnerValueFactory.ListSpinnerValueFactory<Student> valueFactory=new SpinnerValueFactory.ListSpinnerValueFactory<>(data);
+        var valueFactory=new SpinnerValueFactory.ListSpinnerValueFactory<>(data);
         valueFactory.setConverter(new SimplifiedStringConverter<>() {
             @Override
             public String toString(Student object) {
