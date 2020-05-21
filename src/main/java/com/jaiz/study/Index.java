@@ -5,7 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.List;
 import java.util.Objects;
 
 import com.jaiz.study.beans.Example;
@@ -18,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -28,20 +28,23 @@ public class Index extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        // TODO 可以使用treeview优化一下显示
         VBox root = new VBox();
 
         ObservableList<Example> examples = FXCollections.observableArrayList();
         ClassLoader loader = this.getClass().getClassLoader();
         sweepStartable(this.getClass().getPackageName(), examples, loader);
-
+        //排序优化
+        //LESSON类型靠前
+        //EXAMPLE类型靠后
+        examples.sort((e1,e2)->{
+            return 1;
+        });
         var labels = root.getChildren();
         examples.forEach(example -> {
-
             String text = example.getTitle();
-
             HBox hBox = new HBox();
             Label eLabel = new Label();
-
             String subtitle = example.getSubtitle();
             if (StringUtils.isNotBlank(subtitle)) {
                 text += "-" + subtitle;
@@ -68,6 +71,10 @@ public class Index extends Application {
                     return;
                 }
             });
+            String toolTipText=concatTooltipText(example.getDigest());
+            if(StringUtils.isNotBlank(toolTipText)){
+                eLabel.setTooltip(new Tooltip(toolTipText));
+            }
             hBox.getChildren().addAll(eLabel,b);
             labels.add(hBox);
         });
@@ -82,6 +89,21 @@ public class Index extends Application {
         primaryStage.setTitle("javafx学习宝典");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    /**
+     * 拼接摘要作为提示工具的内容
+     */
+    private String concatTooltipText(String[] digest) {
+        if(digest.length==0){
+            return null;
+        }
+        StringBuilder sb=new StringBuilder();
+        for(String d:digest){
+            sb.append(d).append("，");
+        }
+        sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
     }
 
     /**

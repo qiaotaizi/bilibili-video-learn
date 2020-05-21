@@ -25,6 +25,11 @@ public class Example {
      */
     private Class<? extends Startable> appClazz;
 
+    /**
+     * 摘要
+     */
+    private String[] digest;
+
     public static Example fromClass(Class<? extends Startable> appClass) {
         Example e = new Example();
         e.setAppClazz(appClass);
@@ -32,6 +37,7 @@ public class Example {
         if (Objects.nonNull(meta)) {
             e.setTitle(meta.title());
             e.setSubtitle(meta.subtitle());
+            e.setDigest(meta.digest());
         }
         return e;
     }
