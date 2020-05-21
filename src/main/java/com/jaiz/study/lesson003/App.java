@@ -1,5 +1,9 @@
 package com.jaiz.study.lesson003;
 
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+import com.jaiz.study.CategoryType;
+
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -14,7 +18,9 @@ import javafx.stage.Stage;
  * 窗口尺寸变化监听
  * 全屏显示
  */
-public class App extends Application {
+@StartableMeta(title = "lesson003",category = CategoryType.LESSON,
+subtitle = "Stage",digest = {"标题、Icon","最大化、最小化","关闭、展示","初始宽高、最大最小宽高","窗口尺寸变化监听","全屏显示"})
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 

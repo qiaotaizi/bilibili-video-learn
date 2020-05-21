@@ -1,12 +1,14 @@
 package com.jaiz.study;
 
-import com.jaiz.study.utils.Formatters;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.text.Font;
+
+import org.junit.Assert;
 import org.junit.Test;
 
-import java.awt.*;
 import java.util.Properties;
+
+import com.jaiz.study.lesson001.Lesson001;
 
 /**
  * Unit test for simple App.
@@ -47,6 +49,20 @@ public class AppTest
     @Test
     public void formatPrintingTest(){
         System.out.println(String.format("hello，%s, I'm %s, %d years old this year.", "world", "jaiz", 5));
+    }
+
+    @Test
+    public void packageNameTest(){
+        var packName=this.getClass().getPackageName();
+        Assert.assertEquals("com.jaiz.study", packName);
+    }
+
+    @Test
+    public void childClassTest(){
+        Class<Lesson001> lesson001Class=Lesson001.class;
+        Class<Startable> startableClass=Startable.class;
+        boolean isAsignable=startableClass.isAssignableFrom(lesson001Class);
+        Assert.assertTrue("类型不匹配",isAsignable);
     }
 
 }

@@ -22,7 +22,12 @@ import javafx.util.Duration;
 
 import java.util.Calendar;
 
-public class DigitalClock extends Application {
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+import com.jaiz.study.CategoryType;
+
+@StartableMeta(title = "电子时钟",category = CategoryType.EXAMPLE)
+public class DigitalClock extends Startable {
 
     private Clock clock;
 

@@ -1,11 +1,11 @@
-package com.jaiz.study.examples.clock;
+package com.jaiz.study;
 
 import javafx.application.Application;
 
 public class Main {
 
     public static void main(String[] args) {
-        Application.launch(DigitalClock.class,args);
+        Application.launch(Index.class, args);
     }
-
+    
 }
