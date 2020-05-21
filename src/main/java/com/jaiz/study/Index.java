@@ -12,6 +12,7 @@ import com.jaiz.study.beans.Example;
 import org.apache.commons.lang3.StringUtils;
 
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -25,8 +26,12 @@ import javafx.stage.Stage;
 
 public class Index extends Application {
 
+    public static HostServices H_S;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        H_S=getHostServices();
 
         // TODO 可以使用treeview优化一下显示
         VBox root = new VBox();

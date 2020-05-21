@@ -1,5 +1,9 @@
 package com.jaiz.study.lesson004;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+
 import javafx.application.Application;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -7,7 +11,9 @@ import javafx.stage.Stage;
 /**
  * 模态化窗口
  */
-public class App2 extends Application {
+@StartableMeta(title = "lesson004",category = CategoryType.LESSON,
+subtitle = "模态化窗口",digest = {"模态化窗口"})
+public class App2 extends Startable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {

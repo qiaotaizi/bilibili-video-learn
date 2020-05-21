@@ -1,6 +1,9 @@
 package com.jaiz.study.lesson004;
 
-import javafx.application.Application;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+import com.jaiz.study.CategoryType;
+
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -10,11 +13,9 @@ import javafx.stage.StageStyle;
  * 透明度 置顶
  *
  */
-public class App extends Application {
-
-    public static void main(String[] args) {
-        Application.launch(App.class, args);
-    }
+@StartableMeta(title = "lesson004",category = CategoryType.LESSON,
+subtitle = "多窗口",digest = {"透明度","置顶","多窗口","窗口风格"})
+public class App extends Startable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -47,7 +48,7 @@ public class App extends Application {
     private void openMultiStage() {
 
         Stage s1 = new Stage();
-        s1.setTitle("s1-DECORATED");
+        s1.setTitle("s1-DECORATED(关闭此窗口将关闭其他sn窗口)");
         s1.initStyle(StageStyle.DECORATED);// 默认类型
         s1.show();
 
@@ -73,6 +74,12 @@ public class App extends Application {
 
         // 应用退出，直接关闭全部窗口
         // Platform.exit();
+        s1.setOnCloseRequest(event->{
+            s2.close();
+            s3.close();
+            s4.close();
+            s5.close();
+        });
 
     }
 }

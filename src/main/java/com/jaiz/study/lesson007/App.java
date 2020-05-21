@@ -1,5 +1,10 @@
 package com.jaiz.study.lesson007;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Index;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.scene.Group;
@@ -13,7 +18,9 @@ import javafx.stage.Stage;
  * 作为Scene的根节点的Node，会占据整个scene
  * 一般使用布局类对象作为根节点。
  */
-public class App extends Application {
+@StartableMeta(title = "lesson007",category = CategoryType.LESSON
+,digest = {"更改鼠标图片","hostServices"})
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -35,8 +42,7 @@ public class App extends Application {
 
         b.setOnMouseClicked(event -> {
             System.out.println("clicked");
-            HostServices hostServices=getHostServices();
-            hostServices.showDocument("https://www.baidu.com");
+            Index.H_S.showDocument("https://www.baidu.com");
         });
 
         primaryStage.show();

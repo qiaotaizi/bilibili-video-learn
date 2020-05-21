@@ -1,5 +1,9 @@
 package com.jaiz.study.lesson006;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -10,7 +14,9 @@ import javafx.stage.Stage;
  * 获取主副屏幕局
  * 获取屏幕边界，DPI等
  */
-public class App extends Application {
+@StartableMeta(title = "lesson006",category = CategoryType.LESSON,
+subtitle = "Screen api",digest = {"获取主副屏幕局","获取屏幕边界，DPI等"})
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
         //获取主屏幕

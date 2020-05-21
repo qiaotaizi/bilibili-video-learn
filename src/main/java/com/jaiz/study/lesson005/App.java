@@ -1,5 +1,9 @@
 package com.jaiz.study.lesson005;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+
 import javafx.application.Application;
 import javafx.application.ConditionalFeature;
 import javafx.application.Platform;
@@ -14,7 +18,9 @@ import javafx.stage.Stage;
  *
  *
  */
-public class App extends Application {
+@StartableMeta(title = "lesson005",category = CategoryType.LESSON,
+subtitle = "Platform api")
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
