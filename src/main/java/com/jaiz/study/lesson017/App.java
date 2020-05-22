@@ -1,7 +1,10 @@
 package com.jaiz.study.lesson017;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
@@ -10,7 +13,9 @@ import javafx.stage.Stage;
 /**
  * FlowPane
  */
-public class App extends Application {
+@StartableMeta(title = "lesson017",category = CategoryType.LESSON,
+subtitle = "FlowPane")
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 

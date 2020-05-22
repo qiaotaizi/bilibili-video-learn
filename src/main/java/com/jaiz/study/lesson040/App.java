@@ -1,18 +1,25 @@
 package com.jaiz.study.lesson040;
 
+import java.util.Objects;
+
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.beans.Student;
 import com.jaiz.study.utils.AppUtils;
 import com.jaiz.study.utils.Repo;
-import javafx.application.Application;
-import javafx.collections.FXCollections;
+
+import org.apache.commons.lang3.StringUtils;
+
 import javafx.collections.ObservableList;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.Objects;
 
 /**
  * setCellFactory+ListCell动态修改数据
@@ -21,7 +28,9 @@ import java.util.Objects;
  *
  * 注意ChoiceBox是不支持cellFactory的
  */
-public class App extends Application {
+@StartableMeta(title = "lesson040",category = CategoryType.LESSON,
+subtitle = "CellFactory与ListCell")
+public class App extends Startable {
 
 
     @Override
@@ -69,6 +78,7 @@ public class App extends Application {
         });
 
 
-        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
+        AppUtils.quickInit(primaryStage, "lesson040", root);
+        primaryStage.show();
     }
 }

@@ -1,11 +1,21 @@
 package com.jaiz.study.lesson027;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
-import javafx.scene.control.*;
+
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 菜单栏续讲
@@ -16,7 +26,10 @@ import javafx.stage.Stage;
  * 复选菜单
  *
  */
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson027",category = CategoryType.LESSON,
+subtitle = "MenuBar_2",digest = {"SeparatorMenuItem"})
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -59,13 +72,13 @@ public class App extends Application {
 
 
         item1.setOnAction(actionEvent -> {
-            System.out.println("item1 clicked");
+            log.info("item1 clicked");
         });
         item2.setOnAction(actionEvent -> {
-            System.out.println("item2 clicked");
+            log.info("item2 clicked");
         });
         item5.setOnAction(actionEvent -> {
-            System.out.println("item5 clicked");
+            log.info("item5 clicked");
         });
 
         SeparatorMenuItem separatorMenuItem=new SeparatorMenuItem();

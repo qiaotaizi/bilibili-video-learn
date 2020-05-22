@@ -1,7 +1,12 @@
 package com.jaiz.study.lesson034;
 
+import java.util.Objects;
+
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -10,15 +15,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 简单实现文本框的关键字查询和文本排序
  * 文本排序没有实用意义
  * 这里只实现关键字查找
  */
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson034",category = CategoryType.LESSON,
+subtitle = "文本框关键字查找")
+public class App extends Startable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -63,13 +70,14 @@ public class App extends Application {
 
             int anchor=cursorPos+sub.indexOf(pattern);
             int caretPosition=pattern.length()+anchor;
-            System.out.println(anchor+","+caretPosition);
+            log.info(anchor+","+caretPosition);
 
             find_ta.selectRange(anchor,caretPosition);
 
             find_ta.requestFocus();
         });
 
-        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
+        AppUtils.quickInit(primaryStage,  "lesson034", root);
+        primaryStage.show();
     }
 }

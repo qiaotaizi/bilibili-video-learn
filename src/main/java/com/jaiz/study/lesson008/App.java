@@ -1,6 +1,9 @@
 package com.jaiz.study.lesson008;
 
-import javafx.application.Application;
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,7 +14,10 @@ import javafx.stage.Stage;
  * 将一些组件分组
  * 可以为它们设定某些共用的属性
  */
-public class App extends Application {
+@StartableMeta(title = "lesson008",category = CategoryType.LESSON,
+subtitle = "Group"
+,digest = {"组件分组","共用属性"})
+public class App extends Startable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {

@@ -1,8 +1,10 @@
 package com.jaiz.study.lesson047;
 
-import com.jaiz.study.utils.AppDesc;
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
@@ -10,11 +12,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-@AppDesc({"SplitPane",
-        "注意splitPane不是Pane的子类",
-        "而是Control的子类",
-        "SplitPane的item如果是没有伸缩能力的Node时，SplitPane的分隔线将无法被拖动"})
-public class App extends Application {
+@StartableMeta(title = "lesson046",category = CategoryType.LESSON,
+subtitle = "SplitPane",digest = {
+"注意splitPane不是Pane的子类",
+"而是Control的子类",
+"SplitPane的item如果是没有伸缩能力的Node时，SplitPane的分隔线将无法被拖动"})
+public class App extends Startable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -46,7 +49,8 @@ public class App extends Application {
         root.getChildren().add(splitPane);
 
 
-        AppUtils.quickInitMenuBar(primaryStage, this.getClass(), root);
+        AppUtils.quickInit(primaryStage, "lesson047", root);
+        primaryStage.show();
         splitPane.setPrefSize(primaryStage.getWidth(),primaryStage.getHeight());
     }
 

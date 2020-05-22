@@ -1,7 +1,10 @@
 package com.jaiz.study.lesson026;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -9,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * MenuBar 菜单栏
@@ -19,7 +23,10 @@ import javafx.stage.Stage;
  * 快捷键
  *
  */
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson026",category = CategoryType.LESSON,
+subtitle = "MenuBar",digest = {"MenuBar","Menu","MenuItem"})
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -49,13 +56,13 @@ public class App extends Application {
 
 
         item1.setOnAction(actionEvent -> {
-            System.out.println("item1 clicked");
+            log.info("item1 clicked");
         });
         item2.setOnAction(actionEvent -> {
-            System.out.println("item2 clicked");
+            log.info("item2 clicked");
         });
         item5.setOnAction(actionEvent -> {
-            System.out.println("item5 clicked");
+            log.info("item5 clicked");
         });
 
         menu1.getItems().addAll(item1,item2);

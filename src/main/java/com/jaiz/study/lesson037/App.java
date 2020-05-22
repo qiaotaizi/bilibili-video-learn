@@ -1,9 +1,15 @@
 package com.jaiz.study.lesson037;
 
+import java.util.Objects;
+
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.beans.Student;
 import com.jaiz.study.utils.AppUtils;
+import com.jaiz.study.utils.Repo;
 import com.jaiz.study.utils.SimplifiedStringConverter;
-import javafx.application.Application;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.SingleSelectionModel;
@@ -12,13 +18,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
 /**
  * ChoiceBox另外一些用法
  * 修改ChoiceBox对象列表的内容
  */
-public class App extends Application {
+@StartableMeta(title = "lesson037",category = CategoryType.LESSON,
+subtitle = "ChoiceBox.Converter")
+public class App extends Startable {
 
 
     @Override
@@ -30,11 +36,7 @@ public class App extends Application {
         TextField tf = new TextField();
         Button button = new Button("修改");
 
-        cb.getItems().addAll(
-                Student.builder().id(1).name("小强").age(18).build(),
-                Student.builder().id(2).name("小华").age(17).build(),
-                Student.builder().id(3).name("小丽").age(19).build()
-        );
+        cb.getItems().addAll(Repo.STUDENTS);
 
         cb.setConverter(new SimplifiedStringConverter<>() {
             @Override
@@ -75,6 +77,7 @@ public class App extends Application {
 
         root.getChildren().add(hBox);
 
-        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
+        AppUtils.quickInit(primaryStage,  "lesson037", root);
+        primaryStage.show();
     }
 }

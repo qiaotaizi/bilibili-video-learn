@@ -2,6 +2,7 @@ package com.jaiz.study.beans;
 
 import java.util.Objects;
 
+import com.jaiz.study.CategoryType;
 import com.jaiz.study.Startable;
 import com.jaiz.study.StartableMeta;
 
@@ -12,6 +13,10 @@ import lombok.Setter;
 @Setter
 public class Example {
 
+    /**
+     * 类型
+     */
+    private CategoryType type;
     /**
      * 标题，例如 lesson001
      */
@@ -38,6 +43,7 @@ public class Example {
             e.setTitle(meta.title());
             e.setSubtitle(meta.subtitle());
             e.setDigest(meta.digest());
+            e.setType(meta.category());
         }
         return e;
     }

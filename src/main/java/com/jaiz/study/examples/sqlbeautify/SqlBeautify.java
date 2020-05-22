@@ -1,19 +1,22 @@
 package com.jaiz.study.examples.sqlbeautify;
 
 import com.alibaba.druid.sql.SQLUtils;
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.WarnHandler;
-import javafx.application.Application;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class SqlBeautify extends Application {
+@StartableMeta(title = "Sql美化器",category = CategoryType.EXAMPLE)
+public class SqlBeautify extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 

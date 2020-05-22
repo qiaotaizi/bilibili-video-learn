@@ -4,7 +4,6 @@ import com.jaiz.study.CategoryType;
 import com.jaiz.study.Startable;
 import com.jaiz.study.StartableMeta;
 
-import javafx.application.Application;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 

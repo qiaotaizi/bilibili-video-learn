@@ -2,7 +2,6 @@ package com.jaiz.study.examples.clock;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -59,7 +58,7 @@ public class DigitalClock extends Startable {
 //                Properties pro=new Properties();
 //                pro.load(new FileReader("./config/conf.properties"));
 //
-//                System.out.println("读取系统配置信息:");
+//                log.info("读取系统配置信息:");
 //                Enumeration<?> propertyNames = pro.propertyNames();
 //                while(propertyNames.hasMoreElements()){
 //                    Object nextElement = propertyNames.nextElement();

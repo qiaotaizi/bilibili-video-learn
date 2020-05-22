@@ -1,7 +1,10 @@
 package com.jaiz.study.lesson014;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -12,7 +15,9 @@ import javafx.stage.Stage;
  * HBox：水平布局
  * VBox：垂直布局
  */
-public class App extends Application {
+@StartableMeta(title = "lesson014",category = CategoryType.LESSON,
+subtitle = "HBox和VBox")
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 

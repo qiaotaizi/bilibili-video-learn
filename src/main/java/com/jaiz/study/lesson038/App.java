@@ -1,11 +1,13 @@
 package com.jaiz.study.lesson038;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.beans.Student;
 import com.jaiz.study.utils.AppUtils;
 import com.jaiz.study.utils.Repo;
 import com.jaiz.study.utils.SimplifiedStringConverter;
-import javafx.application.Application;
-import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -15,7 +17,9 @@ import javafx.stage.Stage;
 /**
  * ComboBox
  */
-public class App extends Application {
+@StartableMeta(title = "lesson038",category = CategoryType.LESSON,
+subtitle = "ComboBox")
+public class App extends Startable {
 
 
     @Override
@@ -46,7 +50,8 @@ public class App extends Application {
         root.getChildren().add(cb);
 
 
-        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
+        AppUtils.quickInit(primaryStage, "lesson038", root);
+        primaryStage.show();
     }
 
 }

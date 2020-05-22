@@ -1,8 +1,10 @@
 package com.jaiz.study.lesson049;
 
-import com.jaiz.study.utils.AppDesc;
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
@@ -13,8 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-@AppDesc({"ScrollBar，ScrollPane，Separator"})
-public class App extends Application {
+@StartableMeta(title = "lesson048",category = CategoryType.LESSON,
+subtitle = "ScrollBar与ScrollBar，ScrollPane，Separator")
+public class App extends Startable {
 
 
     @Override
@@ -58,7 +61,8 @@ public class App extends Application {
         hBox.setLayoutY(200);
 
 
-        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
+        AppUtils.quickInit(primaryStage, "lesson049", root);
+        primaryStage.show();
     }
 
 }

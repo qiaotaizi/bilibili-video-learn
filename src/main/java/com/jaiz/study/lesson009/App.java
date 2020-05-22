@@ -1,21 +1,35 @@
 package com.jaiz.study.lesson009;
 
-import javafx.application.Application;
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 使用java代码控制Button样式
  * 使用css代码控制Button样式
  * 添加Button点击监听
  */
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson009",category = CategoryType.LESSON,
+subtitle = "样式"
+,digest = {"代码控制样式","css控制样式"})
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Button b1=new Button("字体");
@@ -58,10 +72,10 @@ public class App extends Application {
 
 
         b2.setOnAction(e-> {
-            System.out.println("b2 clicked");
+            log.info("b2 clicked");
             //从事件获取事件源
             Button source=(Button)e.getSource();
-            System.out.println(source.getText());
+            log.info(source.getText());
         });
 
         Group root=new Group();

@@ -1,7 +1,10 @@
 package com.jaiz.study.lesson020;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -13,7 +16,9 @@ import javafx.stage.Stage;
  * TextFlow
  * 文本流布局
  */
-public class App extends Application {
+@StartableMeta(title = "lesson020",category = CategoryType.LESSON,
+subtitle = "TextFlow")
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 

@@ -1,7 +1,10 @@
 package com.jaiz.study.lesson029;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
@@ -12,7 +15,9 @@ import javafx.stage.Stage;
  * TitledPane
  * Accordion
  */
-public class App extends Application {
+@StartableMeta(title = "lesson029",category = CategoryType.LESSON,
+subtitle = "TitledPane",digest = {"TitledPane","Accordion"})
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -40,6 +45,7 @@ public class App extends Application {
         accordion.getPanes().addAll(tp,tp2,tp3);
 
         root.getChildren().add(accordion);
-        AppUtils.quickInitMenuBar(primaryStage, this.getClass(),root);
+        AppUtils.quickInit(primaryStage,"lesson029",root);
+        primaryStage.show();
     }
 }

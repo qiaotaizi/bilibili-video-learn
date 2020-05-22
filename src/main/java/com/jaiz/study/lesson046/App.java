@@ -1,24 +1,23 @@
 package com.jaiz.study.lesson046;
 
-import com.jaiz.study.utils.AppDesc;
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
 import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;
-import javafx.geometry.Orientation;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-@AppDesc({"ProgressBar进度条","ProgressIndicator"})
-public class App extends Application {
+@StartableMeta(title = "lesson046",category = CategoryType.LESSON,
+subtitle = "ProgressBar与ProgressIndicator")
+public class App extends Startable {
 
     ScheduledService<Double> ss;
 
@@ -86,7 +85,8 @@ public class App extends Application {
             pi.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
         });
 
-        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
+        AppUtils.quickInit(primaryStage, "lesson046", root);
+        primaryStage.show();
     }
 
 }

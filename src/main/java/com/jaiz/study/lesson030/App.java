@@ -1,7 +1,10 @@
 package com.jaiz.study.lesson030;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.geometry.Side;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,7 +18,9 @@ import javafx.stage.Stage;
  * TitledPane
  * Accordion
  */
-public class App extends Application {
+@StartableMeta(title = "lesson030",category = CategoryType.LESSON,
+subtitle = "TabPane",digest = {"TitledPane","Accordion"})
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -53,6 +58,7 @@ public class App extends Application {
 
         root.getChildren().add(tp);
 
-        AppUtils.quickInitMenuBar(primaryStage, this.getClass(),root);
+        AppUtils.quickInit(primaryStage, "lesson030",root);
+        primaryStage.show();
     }
 }

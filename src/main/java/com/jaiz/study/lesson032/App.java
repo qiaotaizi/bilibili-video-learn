@@ -1,7 +1,10 @@
 package com.jaiz.study.lesson032;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -9,7 +12,9 @@ import javafx.stage.Stage;
 /**
  * TextArea
  */
-public class App extends Application {
+@StartableMeta(title = "lesson032",category = CategoryType.LESSON,
+subtitle = "TextArea")
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -29,6 +34,7 @@ public class App extends Application {
         root.getChildren().add(ta);
 
 
-        AppUtils.quickInitMenuBar(primaryStage, this.getClass(),root);
+        AppUtils.quickInit(primaryStage,"lesson032",root);
+        primaryStage.show();
     }
 }

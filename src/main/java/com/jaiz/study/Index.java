@@ -5,6 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import com.jaiz.study.beans.Example;
@@ -16,74 +18,51 @@ import javafx.application.HostServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Index extends Application {
 
-    public static HostServices H_S;
+    public static HostServices GLOBAL_HS;
+
+    private Stage mainStage;
+
+    @Override
+    public void init() throws Exception {
+        super.init();
+        //初始化Application HostService
+        GLOBAL_HS=getHostServices();
+        log.info("Application.init()，线程名：{}",Thread.currentThread().getName());
+        
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.mainStage=primaryStage;
 
-        H_S=getHostServices();
-
-        // TODO 可以使用treeview优化一下显示
-        VBox root = new VBox();
-
-        ObservableList<Example> examples = FXCollections.observableArrayList();
+        log.info("Application.init()，线程名：{}",Thread.currentThread().getName());
+        ScrollPane root=new ScrollPane();
+        Accordion accordion=new Accordion();
+        root.setContent(accordion);
+        Map<CategoryType,ObservableList<Example>> accordionMap=initAccordionMap();
         ClassLoader loader = this.getClass().getClassLoader();
-        sweepStartable(this.getClass().getPackageName(), examples, loader);
+        sweepStartable(this.getClass().getPackageName(), accordionMap, loader);
         //排序优化
         //LESSON类型靠前
         //EXAMPLE类型靠后
-        examples.sort((e1,e2)->{
-            return 1;
-        });
-        var labels = root.getChildren();
-        examples.forEach(example -> {
-            String text = example.getTitle();
-            HBox hBox = new HBox();
-            Label eLabel = new Label();
-            String subtitle = example.getSubtitle();
-            if (StringUtils.isNotBlank(subtitle)) {
-                text += "-" + subtitle;
-            }
-            eLabel.setText(text);
-            Button b = new Button("查看");
-            b.setOnAction(event -> {
-                Class<? extends Startable> appClass = example.getAppClazz();
-                Startable s;
-                try {
-                    s = appClass.getDeclaredConstructor().newInstance();
-                } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-                        | InvocationTargetException | NoSuchMethodException | SecurityException e1) {
-                    e1.printStackTrace();
-                    return;
-                }
-                Stage subStage = new Stage();
-                subStage.initModality(Modality.WINDOW_MODAL);
-                subStage.initOwner(primaryStage);
-                try {
-                    s.start(subStage);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return;
-                }
-            });
-            String toolTipText=concatTooltipText(example.getDigest());
-            if(StringUtils.isNotBlank(toolTipText)){
-                eLabel.setTooltip(new Tooltip(toolTipText));
-            }
-            hBox.getChildren().addAll(eLabel,b);
-            labels.add(hBox);
-        });
+        resolveSort(accordionMap);
 
+        //向accordion填充数据
+        fillData(accordion,accordionMap);
+        
         Scene scene = new Scene(root);
 
         primaryStage.setX(30);
@@ -94,6 +73,96 @@ public class Index extends Application {
         primaryStage.setTitle("javafx学习宝典");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    /**
+     * 填充数据至accordion
+     * @param accordion
+     * @param accordionMap
+     */
+    private void fillData(Accordion accordion, Map<CategoryType, ObservableList<Example>> accordionMap) {
+        accordionMap.forEach((type,data)->{
+            VBox vb=new VBox();
+            TitledPane tp=new TitledPane(type.toString(),vb);
+            var dataList=vb.getChildren();
+            data.forEach(example->{
+                String text=example.getTitle();
+                if(StringUtils.isNotBlank(example.getSubtitle())){
+                    text+=" - "+example.getSubtitle();
+                }
+                Hyperlink link=new Hyperlink(text);
+                addLinkEvent(link,example);
+                Tooltip tip=new Tooltip();
+                tip.setText(concatTooltipText(example.getDigest()));
+                link.setTooltip(tip);
+                dataList.add(link);
+            });
+            tp.setAnimated(false);
+            accordion.getPanes().add(tp);
+        });
+    }
+
+    /**
+     * 添加跳转事件
+     * @param link
+     * @param example
+     */
+    private void addLinkEvent(Hyperlink link, Example example) {
+        link.setOnAction(event->{
+            Class<? extends Startable> appClass = example.getAppClazz();
+                Startable s;
+                try {
+                    s = appClass.getDeclaredConstructor().newInstance();
+                } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+                        | InvocationTargetException | NoSuchMethodException | SecurityException e1) {
+                    e1.printStackTrace();
+                    return;
+                }
+                Stage subStage = new Stage();
+                subStage.initModality(Modality.WINDOW_MODAL);
+                subStage.initOwner(this.mainStage);
+                try {
+                    s.start(subStage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return;
+                }
+        });
+    }
+
+    /**
+     * 为map中的ObservableList元素排序
+     */
+    private void resolveSort(Map<CategoryType, ObservableList<Example>> accordionMap) {
+        accordionMap.forEach((k,v)->resolveSort(v));
+    }
+
+    /**
+     * 为ObservableList元素排序
+     * @param v
+     * @return
+     */
+    private void resolveSort(ObservableList<Example> examples) {
+        examples.sort((e1,e2)->{
+            int typeCompare=e1.getType().compareTo(e2.getType());
+            if(typeCompare!=0){
+                return typeCompare;
+            }
+            return e1.getTitle().compareTo(e2.getTitle());
+        });
+    }
+
+    /**
+     * 初始化accordionMap 为每个CategoryType初始化一个ObservableList
+     * 
+     * @return
+     */
+    private Map<CategoryType, ObservableList<Example>> initAccordionMap() {
+        Map<CategoryType, ObservableList<Example>> result=new LinkedHashMap<>();
+        for(CategoryType type :CategoryType.values()){
+            result.put(type, FXCollections.observableArrayList());
+        }
+        return result;
     }
 
     /**
@@ -117,7 +186,8 @@ public class Index extends Application {
      * @param packageName
      * @return
      */
-    private void sweepStartable(String packageName, ObservableList<Example> examples, ClassLoader loader) {
+    @SuppressWarnings("unchecked")//消除类型转换警告
+    private void sweepStartable(String packageName,Map<CategoryType,ObservableList<Example>> accordionMap, ClassLoader loader) {
         URL url = this.getClass().getClassLoader().getResource(packageName.replace(".", "/"));
         URI uri;
         try {
@@ -130,7 +200,7 @@ public class Index extends Application {
         f.listFiles(file -> {
             // 递归查找
             if (file.isDirectory()) {
-                sweepStartable(packageName + "." + file.getName(), examples, loader);
+                sweepStartable(packageName + "." + file.getName(), accordionMap, loader);
                 return false;
             }
             // 过滤非.class文件
@@ -156,7 +226,7 @@ public class Index extends Application {
             Class<Startable> clazzStartable=(Class<Startable>)clazz;
             //封装Example对象
             Example e=Example.fromClass(clazzStartable);
-            examples.add(e);
+            accordionMap.get(e.getType()).add(e);
             return false;
         });
         return;

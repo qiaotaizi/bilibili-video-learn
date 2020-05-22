@@ -1,24 +1,28 @@
 package com.jaiz.study.lesson044;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.beans.Student;
-import com.jaiz.study.utils.AppDesc;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-@AppDesc({"Pagination的使用","分页器"})
-public class App extends Application {
+@StartableMeta(title = "lesson044",category = CategoryType.LESSON,
+subtitle = "Pagination")
+public class App extends Startable {
 
     private Random generator=new Random();
 
@@ -67,7 +71,8 @@ public class App extends Application {
 
         root.getChildren().add(page);
 
-        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
+        AppUtils.quickInit(primaryStage, "lesson044", root);
+        primaryStage.show();
     }
 
     /**

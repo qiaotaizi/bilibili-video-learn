@@ -1,18 +1,25 @@
 package com.jaiz.study.lesson033;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 通过TextFormatter限制输入内容
  */
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson033",category = CategoryType.LESSON,
+subtitle = "TextFormatter")
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -49,19 +56,20 @@ public class App extends Application {
                 new StringConverter<String>() {
                     @Override
                     public String toString(String o) {
-                        System.out.println("StringConverter.toString 触发");
+                        log.info("StringConverter.toString 触发");
                         return o;
                     }
 
                     @Override
                     public String fromString(String s) {
-                        System.out.println("StringConverter.fromString 触发");
+                        log.info("StringConverter.fromString 触发");
                         return s;
                     }
                 }
         ));
 
 
-        AppUtils.quickInitMenuBar(primaryStage, this.getClass(),root);
+        AppUtils.quickInit(primaryStage, "lesson033",root);
+        primaryStage.show();
     }
 }

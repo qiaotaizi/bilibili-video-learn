@@ -1,6 +1,9 @@
 package com.jaiz.study.lesson012;
 
-import javafx.application.Application;
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -8,8 +11,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson012",category = CategoryType.LESSON,
+subtitle = "Tooltip"
+,digest = {"Tooltip","输入事件","选择事件","PromptText"})
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -38,7 +46,7 @@ public class App extends Application {
         });
         //监听文本选择
         tf.selectedTextProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("selected="+newValue);
+            log.info("selected="+newValue);
         });
 
 

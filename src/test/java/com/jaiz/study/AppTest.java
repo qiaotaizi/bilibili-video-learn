@@ -2,6 +2,7 @@ package com.jaiz.study;
 
 import javafx.scene.input.KeyCombination;
 import javafx.scene.text.Font;
+import lombok.extern.slf4j.Slf4j;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,6 +14,7 @@ import com.jaiz.study.lesson001.Lesson001;
 /**
  * Unit test for simple App.
  */
+@Slf4j
 public class AppTest 
 {
     /**
@@ -21,7 +23,7 @@ public class AppTest
     @Test
     public void keyCodeTest()
     {
-        System.out.println(KeyCombination.SHORTCUT_DOWN);
+        log.info("SHORTCUT_DOWN kc = {}",KeyCombination.SHORTCUT_DOWN);
     }
 
     /**
@@ -31,7 +33,7 @@ public class AppTest
     public void sysPropertiesTest(){
         Properties properties=System.getProperties();
         properties.forEach((k,v)->{
-            System.out.println(k+":"+v);
+            log.info(k+":"+v);
         });
     }
 
@@ -40,15 +42,15 @@ public class AppTest
      */
     @Test
     public void fontTest(){
-        System.out.println(Font.getDefault());
+        log.info("Font.getDefault = {}",Font.getDefault());
         for (String family : Font.getFamilies()) {
-            System.out.println(family);
+            log.info(family);
         }
     }
 
     @Test
     public void formatPrintingTest(){
-        System.out.println(String.format("hello，%s, I'm %s, %d years old this year.", "world", "jaiz", 5));
+        log.info(String.format("hello，%s, I'm %s, %d years old this year.", "world", "jaiz", 5));
     }
 
     @Test

@@ -1,7 +1,10 @@
 package com.jaiz.study.lesson018;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -9,7 +12,9 @@ import javafx.stage.Stage;
 /**
  * GridPane
  */
-public class App extends Application {
+@StartableMeta(title = "lesson018",category = CategoryType.LESSON,
+subtitle = "GridPane")
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 

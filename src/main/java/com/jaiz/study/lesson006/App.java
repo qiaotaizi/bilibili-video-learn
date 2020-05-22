@@ -4,16 +4,17 @@ import com.jaiz.study.CategoryType;
 import com.jaiz.study.Startable;
 import com.jaiz.study.StartableMeta;
 
-import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Screen api
  * 获取主副屏幕局
  * 获取屏幕边界，DPI等
  */
+@Slf4j
 @StartableMeta(title = "lesson006",category = CategoryType.LESSON,
 subtitle = "Screen api",digest = {"获取主副屏幕局","获取屏幕边界，DPI等"})
 public class App extends Startable {
@@ -28,11 +29,11 @@ public class App extends Startable {
         //对于mac而言，bounds表示整个物理屏幕的边界
         //visualBounds表示除去上部系统标题栏的屏幕边界
         Rectangle2D bounds=screen.getBounds();
-        System.out.println("屏幕边界"+bounds);
+        log.info("屏幕边界"+bounds);
         Rectangle2D visualBounds=screen.getVisualBounds();
-        System.out.println("可视屏幕边界"+visualBounds);
+        log.info("可视屏幕边界"+visualBounds);
 
-        System.out.println("屏幕Dpi="+screen.getDpi());
+        log.info("屏幕Dpi="+screen.getDpi());
 
         //primaryStage.setHeight(visualBounds.getHeight());
         //primaryStage.setWidth(visualBounds.getWidth());

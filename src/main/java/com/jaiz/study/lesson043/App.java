@@ -1,8 +1,13 @@
 package com.jaiz.study.lesson043;
 
+import java.time.LocalDate;
+
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
 import com.jaiz.study.utils.Formatters;
-import javafx.application.Application;
+
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -12,13 +17,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
-import java.time.LocalDate;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ColorPicker和DatePicker
  */
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson043",category = CategoryType.LESSON,
+subtitle = "ColorPicker和DatePicker")
+public class App extends Startable {
 
 
     @Override
@@ -39,7 +46,7 @@ public class App extends Application {
 
         dp.setOnAction(event -> {
             LocalDate ld=dp.getValue();
-            System.out.println(Formatters.DEFAULT.format(ld));
+            log.info(Formatters.DEFAULT.format(ld));
         });
 
         //可以通过自定义CellFactory控制格式
@@ -63,7 +70,8 @@ public class App extends Application {
 
         root.getChildren().add(hBox);
 
-        AppUtils.quickInitMenuBar(primaryStage, this.getClass(), root);
+        AppUtils.quickInit(primaryStage,"lesson043" , root);
+        primaryStage.show();
     }
 
 }

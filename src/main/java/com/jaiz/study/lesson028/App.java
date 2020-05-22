@@ -1,17 +1,32 @@
 package com.jaiz.study.lesson028;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
-import javafx.scene.control.*;
+
+import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.CustomMenuItem;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 菜单栏续讲2
  *
  * CustomMenuItem,MenuButton,SplitMenuButton,ContextMenu
  */
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson028",category = CategoryType.LESSON,
+subtitle = "MenuBar_3",digest = {"CustomMenuItem","MenuButton","SplitMenuButton","ContextMenu"})
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FlowPane root=new FlowPane();
@@ -51,7 +66,7 @@ public class App extends Application {
 
         //setOnMenuValidation 使用快捷键触发菜单项时会触发该时间的监听
         item6.setOnMenuValidation(event -> {
-            System.out.println("快捷键触发item6");
+            log.info("快捷键触发item6");
         });
         mb.getItems().addAll(item6,item7,item8);
 
@@ -70,7 +85,7 @@ public class App extends Application {
         Label label=new Label("右键点我出菜单");
         label.setContextMenu(cm);
         label.setOnContextMenuRequested(contextMenuEvent -> {
-            System.out.println("呼出右键菜单事件");
+            log.info("呼出右键菜单事件");
         });
 
         menuBar.getMenus().addAll(menu1,menu2,menu3,menu4);

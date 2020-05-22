@@ -1,21 +1,31 @@
 package com.jaiz.study.lesson036;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+import com.jaiz.study.beans.City;
+import com.jaiz.study.beans.Province;
 import com.jaiz.study.beans.Student;
 import com.jaiz.study.utils.AppUtils;
+import com.jaiz.study.utils.Repo;
 import com.jaiz.study.utils.SimplifiedStringConverter;
-import javafx.application.Application;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ChoiceBox
  * 附加一些ObservableList的使用
  */
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson036",category = CategoryType.LESSON,
+subtitle = "ChoiceBox")
+public class App extends Startable {
 
 
     @Override
@@ -25,11 +35,7 @@ public class App extends Application {
 
         ChoiceBox<Student> cb = new ChoiceBox<>();
 
-        cb.getItems().addAll(
-                Student.builder().id(1).name("小强").age(18).build(),
-                Student.builder().id(2).name("小华").age(17).build(),
-                Student.builder().id(3).name("小丽").age(19).build()
-        );
+        cb.getItems().addAll(Repo.STUDENTS);
 
         //将cb所含的对象转化为String以进行显示，
         //条件允许的话也可以通过重写对象的toString方法实现
@@ -46,7 +52,7 @@ public class App extends Application {
         cb.setOnAction(event -> {
             //获取被选中的对象
             Student stu = cb.getSelectionModel().getSelectedItem();
-            System.out.println(stu);
+            log.info("selected = {}",stu);
         });
 
         root.getChildren().add(cb);
@@ -90,7 +96,8 @@ public class App extends Application {
         root.getChildren().add(hBox);
 
 
-        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
+        AppUtils.quickInit(primaryStage, "lesson036", root);
+        primaryStage.show();
     }
 
     /**

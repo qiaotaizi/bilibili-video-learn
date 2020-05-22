@@ -4,10 +4,10 @@ import com.jaiz.study.CategoryType;
 import com.jaiz.study.Startable;
 import com.jaiz.study.StartableMeta;
 
-import javafx.application.Application;
 import javafx.application.ConditionalFeature;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Platform api
@@ -18,6 +18,7 @@ import javafx.stage.Stage;
  *
  *
  */
+@Slf4j
 @StartableMeta(title = "lesson005",category = CategoryType.LESSON,
 subtitle = "Platform api")
 public class App extends Startable {
@@ -30,13 +31,13 @@ public class App extends Startable {
 
         Platform.runLater(()->
                 //JavaFX Application Thread
-                System.out.println(
+                log.info(
                         "run later ... = "+
                                 Thread.currentThread().getName()));
 
         primaryStage.setTitle("lesson005");
         primaryStage.show();
-        System.out.println("start() = "+Thread.currentThread().getName());
+        log.info("start() = "+Thread.currentThread().getName());
 
 
         showSystemProperties();
@@ -45,8 +46,8 @@ public class App extends Startable {
 
     private void showSystemProperties() {
 
-        System.out.println(Platform.isSupported(ConditionalFeature.SCENE3D));
-        System.out.println(Platform.isSupported(ConditionalFeature.FXML));
+        log.info("ConditionalFeature.SCENE3D supported = {}",Platform.isSupported(ConditionalFeature.SCENE3D));
+        log.info("ConditionalFeature.FXML supported = {}",Platform.isSupported(ConditionalFeature.FXML));
 
     }
 }

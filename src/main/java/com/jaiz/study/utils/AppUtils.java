@@ -16,9 +16,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.Objects;
-
+@Slf4j
 public class AppUtils {
 
     private static Stage aboutStage;
@@ -45,6 +45,7 @@ public class AppUtils {
      * @param appClass
      * @param root
      */
+    @Deprecated
     public static void quickInitMenuBar(Stage stage, Class<? extends Application> appClass, Pane root){
 
         String title=titleByAppClassPackageName(appClass);
@@ -65,7 +66,7 @@ public class AppUtils {
 
         close.setOnAction(actionEvent -> {
             stage.close();
-            System.out.println("cmd+q 退出stage");
+            log.info("cmd+q 退出stage");
         });
 
         initAboutStage(stage,appClass,title);
@@ -117,21 +118,9 @@ public class AppUtils {
      * @param appClass
      * @return
      */
+    @Deprecated
     private static String desc(Class<? extends Application> appClass) {
-        String defaultResult="暂无说明";
-        AppDesc desc=appClass.getAnnotation(AppDesc.class);
-        if (Objects.isNull(desc)){
-            return defaultResult;
-        }
-        String[] descValue=desc.value();
-        if (descValue.length==1 && Objects.equals("",descValue[0])){
-            return defaultResult;
-        }
-        StringBuilder result=new StringBuilder();
-        for (String s : descValue) {
-            result.append(s).append(System.lineSeparator());
-        }
-        return result.toString();
+        return "";
     }
 
     /**

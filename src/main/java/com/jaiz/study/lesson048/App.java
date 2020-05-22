@@ -1,26 +1,25 @@
 package com.jaiz.study.lesson048;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.beans.Student;
-import com.jaiz.study.utils.AppDesc;
 import com.jaiz.study.utils.AppUtils;
 import com.jaiz.study.utils.Repo;
 import com.jaiz.study.utils.SimplifiedStringConverter;
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.concurrent.ScheduledService;
-import javafx.concurrent.Task;
-import javafx.scene.control.*;
+
+import javafx.scene.control.Button;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.Objects;
-
-@AppDesc({"Spinner"})
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson048",category = CategoryType.LESSON,
+subtitle = "Spinner")
+public class App extends Startable {
 
 
     @Override
@@ -51,7 +50,7 @@ public class App extends Application {
 
         Button btn=new Button("打印当前学生信息");
         btn.setOnAction(event -> {
-            System.out.println(spinner1.getValue());
+            log.info("spinner.value = {}",spinner1.getValue());
         });
 
         vBox.getChildren().add(spinner1);
@@ -59,7 +58,8 @@ public class App extends Application {
 
         root.getChildren().add(vBox);
 
-        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
+        AppUtils.quickInit(primaryStage, "lesson048", root);
+        primaryStage.show();
     }
 
 }

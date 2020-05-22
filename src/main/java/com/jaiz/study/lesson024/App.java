@@ -1,17 +1,25 @@
 package com.jaiz.study.lesson024;
 
+import java.util.UUID;
+
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
+
 import javafx.animation.FadeTransition;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.util.UUID;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * javaFX简单案例
@@ -21,7 +29,10 @@ import java.util.UUID;
  * Node.UserData
  * Node.Properties
  */
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson024",category = CategoryType.LESSON,
+subtitle = "登录窗口示例",digest = {"Node.UserData","Node.Properties"})
+public class App extends Startable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -39,8 +50,8 @@ public class App extends Application {
         Button b_clear=new Button("清除");
 
         b_login.setOnAction(event -> {
-            System.out.println("用户名："+t_name.textProperty().get()+",密码："+p_pwd.textProperty().get());
-            System.out.println("用户名标签上的用户数据："+l_name.getUserData());
+            log.info("用户名："+t_name.textProperty().get()+",密码："+p_pwd.textProperty().get());
+            log.info("用户名标签上的用户数据："+l_name.getUserData());
 
             //动画效果简单示例
             FadeTransition ft=new FadeTransition();

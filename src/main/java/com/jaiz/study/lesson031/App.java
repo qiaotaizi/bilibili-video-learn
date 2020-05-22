@@ -1,7 +1,10 @@
 package com.jaiz.study.lesson031;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -12,7 +15,9 @@ import javafx.stage.Stage;
  * RadioButton
  * CheckBox
  */
-public class App extends Application {
+@StartableMeta(title = "lesson031",category = CategoryType.LESSON,
+subtitle = "选择框",digest = {"RadioButton","CheckBox"})
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -40,6 +45,7 @@ public class App extends Application {
 
         root.getChildren().addAll(rb1,rb2,rb3,cb1,cb2,cb3);
 
-        AppUtils.quickInitMenuBar(primaryStage, this.getClass(),root);
+        AppUtils.quickInit(primaryStage, "lesson031",root);
+        primaryStage.show();
     }
 }

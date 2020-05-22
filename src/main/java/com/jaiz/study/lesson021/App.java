@@ -1,7 +1,10 @@
 package com.jaiz.study.lesson021;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -9,12 +12,16 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * TilePane
  * 瓷砖布局
  */
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson021",category = CategoryType.LESSON,
+subtitle = "TilePane")
+public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
         TilePane root=new TilePane();
@@ -46,13 +53,13 @@ public class App extends Application {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("progress end");
+                log.info("progress end");
             }).start();
         });
 
         b2.setOnAction(event ->{
             DoubleProperty dp=pb.progressProperty();
-            System.out.println(dp.getValue());
+            log.info("DoubleProperty.value = {}",dp.getValue());
         });
 
         //布局上每个控件占据的空间等于布局上占用空间最大的控件的尺寸

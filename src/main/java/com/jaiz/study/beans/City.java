@@ -1,6 +1,5 @@
-package com.jaiz.study.lesson036;
+package com.jaiz.study.beans;
 
-import javafx.collections.ObservableList;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,10 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-class Province {
+public class City {
+
     private Integer id;
 
     private String name;
 
-    private ObservableList<City> cities;
+    private Integer provinceId;
+
 }

@@ -1,7 +1,10 @@
 package com.jaiz.study.lesson022;
 
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;
 import javafx.scene.Scene;
@@ -15,18 +18,18 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * DialogPane
  * ScheduledService
  */
-public class App extends Application {
+@Slf4j
+@StartableMeta(title = "lesson022",category = CategoryType.LESSON,
+subtitle = "DialogPane和ScheduledService")
+public class App extends Startable {
 
     private ScheduledService<Integer> ss;
-
-    public static void main(String[] args) {
-        Application.launch(App.class, args);
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -48,11 +51,11 @@ public class App extends Application {
             dialogPane.setExpanded(true);// 控制扩展内容的默认展示
             Button close = (Button) dialogPane.lookupButton(ButtonType.CLOSE);
             close.setOnAction(event1 -> {
-                System.out.println("close");
+                log.info("close");
             });
             Button ok = (Button) dialogPane.lookupButton(ButtonType.OK);
             ok.setOnAction(event1 -> {
-                System.out.println("ok");
+                log.info("ok");
             });
 
             Stage stage = new Stage();
@@ -76,7 +79,7 @@ public class App extends Application {
                         @Override
                         protected Integer call() throws Exception {
                             // 该方法运行于其他线程
-                            System.out.println(
+                            log.info(
                                     "ScheduledService.Task.call Thread Name=" + Thread.currentThread().getName());
                             return 1;
                         }
@@ -86,8 +89,8 @@ public class App extends Application {
                             //该方法运行于JavaFX Application Thread
                             //value是call方法的返回值
                             //如果需要后台任务更新UI，在这个方法中进行
-                            System.out.println("ScheduledService.Task.updateValue Thread Name=" + Thread.currentThread().getName());
-                            System.out.println("value=" + value);
+                            log.info("ScheduledService.Task.updateValue Thread Name=" + Thread.currentThread().getName());
+                            log.info("value=" + value);
                         }
                     };
                 }

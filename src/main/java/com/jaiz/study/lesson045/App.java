@@ -1,8 +1,10 @@
 package com.jaiz.study.lesson045;
 
-import com.jaiz.study.utils.AppDesc;
+import com.jaiz.study.CategoryType;
+import com.jaiz.study.Startable;
+import com.jaiz.study.StartableMeta;
 import com.jaiz.study.utils.AppUtils;
-import javafx.application.Application;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Orientation;
@@ -11,12 +13,12 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-@AppDesc({"Slider的使用"})
-public class App extends Application {
+@StartableMeta(title = "lesson045",category = CategoryType.LESSON,
+subtitle = "Slider")
+public class App extends Startable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -52,7 +54,8 @@ public class App extends Application {
 
         root.getChildren().add(vBox);
 
-        AppUtils.quickInitMenuBar(primaryStage,  this.getClass(), root);
+        AppUtils.quickInit(primaryStage,  "lesson045", root);
+        primaryStage.show();
     }
 
 }
