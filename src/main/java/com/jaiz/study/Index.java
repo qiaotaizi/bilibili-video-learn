@@ -62,21 +62,30 @@ public class Index extends Application {
 
         //向accordion填充数据
         fillData(accordion,accordionMap);
-        
-        Scene scene = new Scene(root);
 
+        primaryStageSettings(primaryStage);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    /**
+     * stage参数初始化
+     * @param primaryStage
+     * @param scene
+     */
+    private void primaryStageSettings(Stage primaryStage) {
         primaryStage.setX(30);
         primaryStage.setY(50);
         primaryStage.setWidth(300);
         primaryStage.setHeight(700);
         primaryStage.setResizable(false);
         primaryStage.setTitle("javafx学习宝典");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     /**
      * 填充数据至accordion
+     * 
      * @param accordion
      * @param accordionMap
      */

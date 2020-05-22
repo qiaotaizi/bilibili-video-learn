@@ -39,44 +39,23 @@ public class FXTerminal extends Startable {
 
     Process shellProcess;
 
+
+    //记录初始的标准输出流和标准异常流，以便在窗口关闭时恢复
+    private PrintStream sysout = System.out;
+    private PrintStream syserr = System.err;
+
     /**
      * 退出控制，用于中断子线程
      */
-    private boolean quit=false;
-    LineNumberReader readerOut=null;
-    LineNumberReader readerIn=null;
+    LineNumberReader readerOut = null;
+    LineNumberReader readerIn = null;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        primaryStage.setOnCloseRequest(event -> {
-            // 关闭窗口时强制终止shell进程
-            shellProcess.destroy();
-            //恢复系统输出流
-            System.setOut(this.sysout);
-            System.setErr(this.syserr);
-            //关闭正在等待的reader，以退出子线程
-            log.info("正在关闭Terminal");
-            if(Objects.nonNull(readerOut)){
-                try { 
-                    readerOut.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(Objects.nonNull(readerIn)){
-                try {
-                    readerIn.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            
-        });
+        onStageClosingSettings(primaryStage);
 
         TextArea ta = new TextArea();
-
         ta.setEditable(false);
         ta.setFont(Font.font("mononoki", FontWeight.BOLD, FontPosture.REGULAR, 18));
         ta.setStyle("-fx-background-color: antiquewhite;");
@@ -86,16 +65,14 @@ public class FXTerminal extends Startable {
 
         TextField cmdField = new TextField();
         // 当前目录
-        //Label pwd = new Label();
+        // Label pwd = new Label();
 
         vb.getChildren().addAll(ta, cmdField);
 
         Scene scene = new Scene(vb);
-
         primaryStage.setTitle("FXTerminal");
         primaryStage.setScene(scene);
         primaryStage.show();
-
         primaryStage.heightProperty()
                 .addListener((observable, oldValue, newValue) -> ta.setPrefHeight(newValue.doubleValue()));
         primaryStage.widthProperty()
@@ -109,14 +86,14 @@ public class FXTerminal extends Startable {
         // 启动zsh
         shellProcess = Runtime.getRuntime().exec("/bin/zsh");
         // 将进程的标准输入流打印在TextArea上
-        Thread printThreadOut=new Thread(new Runnable() {
+        Thread printThreadOut = new Thread(new Runnable() {
             @Override
             public void run() {
-                readerOut=new LineNumberReader(
-                    new InputStreamReader(shellProcess.getInputStream(), StandardCharsets.UTF_8));
+                readerOut = new LineNumberReader(
+                        new InputStreamReader(shellProcess.getInputStream(), StandardCharsets.UTF_8));
                 try {
                     String line;
-                    while ((line = readerOut.readLine()) != null && !quit) {
+                    while ((line = readerOut.readLine()) != null) {
                         System.out.println(line);
                     }
                 } catch (IOException e) {
@@ -127,14 +104,14 @@ public class FXTerminal extends Startable {
         });
         printThreadOut.start();
         // 将进程的标准异常流打印在TextArea上
-        Thread printThreadIn=new Thread(new Runnable() {
+        Thread printThreadIn = new Thread(new Runnable() {
             @Override
             public void run() {
-                readerIn=new LineNumberReader(
-                    new InputStreamReader(shellProcess.getErrorStream(), StandardCharsets.UTF_8));
+                readerIn = new LineNumberReader(
+                        new InputStreamReader(shellProcess.getErrorStream(), StandardCharsets.UTF_8));
                 try {
                     String line;
-                    while ((line = readerIn.readLine()) != null && !quit) {
+                    while ((line = readerIn.readLine()) != null) {
                         System.out.println(line);
                     }
                 } catch (IOException e) {
@@ -162,8 +139,36 @@ public class FXTerminal extends Startable {
 
     }
 
-    private PrintStream sysout=System.out;
-    private PrintStream syserr=System.err;
+    /**
+     * 窗口关闭时执行的逻辑
+     * 
+     * @param primaryStage
+     */
+    private void onStageClosingSettings(Stage primaryStage) {
+        primaryStage.setOnCloseRequest(event -> {
+            // 关闭窗口时强制终止shell进程
+            shellProcess.destroy();
+            // 恢复系统输出流
+            System.setOut(this.sysout);
+            System.setErr(this.syserr);
+            // 关闭正在等待的reader，以退出子线程
+            log.info("正在关闭Terminal");
+            if (Objects.nonNull(readerOut)) {
+                try {
+                    readerOut.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (Objects.nonNull(readerIn)) {
+                try {
+                    readerIn.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
     /**
      * 切换系统标准输出，将输出内容追加至textArea
