@@ -20,9 +20,14 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -35,12 +40,23 @@ public class Index extends Application {
 
     private Stage mainStage;
 
+    private Map<CategoryType,ObservableList<Example>> accordionMap;
+
+    private ScrollPane root;
+    private AnchorPane ap_data;
+    private AnchorPane ap_lookingFor;
+
+    private Accordion accordion;
+
     @Override
     public void init() throws Exception {
         super.init();
         //初始化Application HostService
         GLOBAL_HS=getHostServices();
         log.info("Application.init()，线程名：{}",Thread.currentThread().getName());
+
+        //初始化示例数据
+        this.accordionMap=initAccordionMap();
         
     }
 
@@ -49,10 +65,13 @@ public class Index extends Application {
         this.mainStage=primaryStage;
 
         log.info("Application.init()，线程名：{}",Thread.currentThread().getName());
-        ScrollPane root=new ScrollPane();
-        Accordion accordion=new Accordion();
-        root.setContent(accordion);
-        Map<CategoryType,ObservableList<Example>> accordionMap=initAccordionMap();
+        root=new ScrollPane();
+        ap_data=new AnchorPane();
+        ap_lookingFor=new AnchorPane();
+        ap_lookingFor.getChildren().add(new Label("查找面板打开了"));
+        accordion=new Accordion();
+        ap_data.getChildren().add(accordion);
+        root.setContent(ap_data);
         ClassLoader loader = this.getClass().getClassLoader();
         sweepStartable(this.getClass().getPackageName(), accordionMap, loader);
         //排序优化
@@ -63,14 +82,33 @@ public class Index extends Application {
         //向accordion填充数据
         fillData(accordion,accordionMap);
 
+        //展开首个TitledPane
+        accordion.getPanes().get(0).setExpanded(true);
+
         primaryStageSettings(primaryStage);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        addQuickEvent(scene);
+    }
+
+    /**
+     * 向scene添加监听事件
+     * @param scene
+     */
+    private void addQuickEvent(Scene scene) {
+        KeyCombination kc_cmd_f=new KeyCodeCombination(KeyCode.F,KeyCombination.SHORTCUT_DOWN);
+        scene.getAccelerators().put(kc_cmd_f, ()->{
+            log.info("cmd+f fired");
+            root.setContent(ap_lookingFor);
+            // TODO 实现查找功能
+        });
     }
 
     /**
      * stage参数初始化
+     * 
      * @param primaryStage
      * @param scene
      */
@@ -86,10 +124,10 @@ public class Index extends Application {
     /**
      * 填充数据至accordion
      * 
-     * @param accordion
+     * @param acc
      * @param accordionMap
      */
-    private void fillData(Accordion accordion, Map<CategoryType, ObservableList<Example>> accordionMap) {
+    private void fillData(Accordion acc, Map<CategoryType, ObservableList<Example>> accordionMap) {
         accordionMap.forEach((type,data)->{
             VBox vb=new VBox();
             TitledPane tp=new TitledPane(type.toString(),vb);
@@ -107,7 +145,7 @@ public class Index extends Application {
                 dataList.add(link);
             });
             tp.setAnimated(false);
-            accordion.getPanes().add(tp);
+            acc.getPanes().add(tp);
         });
     }
 
@@ -235,7 +273,10 @@ public class Index extends Application {
             Class<Startable> clazzStartable=(Class<Startable>)clazz;
             //封装Example对象
             Example e=Example.fromClass(clazzStartable);
-            accordionMap.get(e.getType()).add(e);
+            var examples=accordionMap.get(e.getType());
+            if (Objects.nonNull(examples)) {
+                examples.add(e);
+            }
             return false;
         });
         return;
