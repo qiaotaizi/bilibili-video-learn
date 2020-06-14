@@ -8,7 +8,6 @@ import com.jaiz.study.StartableMeta;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter

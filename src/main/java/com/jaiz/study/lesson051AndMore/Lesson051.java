@@ -60,6 +60,7 @@ public class Lesson051 extends Startable {
 class BindingStudent{
     private String name;
     private int age;
+    //通知支持对象
     public PropertyChangeSupport pcs=new PropertyChangeSupport(this);
 
     public String getName() {
