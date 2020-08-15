@@ -25,7 +25,7 @@ import com.jaiz.study.Startable;
 import com.jaiz.study.StartableMeta;
 import com.jaiz.study.CategoryType;
 
-@StartableMeta(title = "电子时钟",category = CategoryType.EXAMPLE)
+@StartableMeta(title = "电子时钟", category = CategoryType.EXAMPLE)
 public class DigitalClock extends Startable {
 
     private Clock clock;
@@ -41,13 +41,13 @@ public class DigitalClock extends Startable {
         root.setStyle("-fx-background-color: black");
 
         // add digital clock
-        clock = new Clock(Color.ORANGERED, Color.rgb(50,50,50));
+        clock = new Clock(Color.ORANGERED, Color.rgb(50, 50, 50));
         clock.setLayoutX(45);
         clock.setLayoutY(186);
         clock.getTransforms().add(new Scale(0.83f, 0.83f, 0, 0));
         // add background and clock to sample
         //root.getChildren().addAll(
-                //background,
+        //background,
         //        clock);
         root.getChildren().add(clock);
         primaryStage.setScene(scene);
@@ -91,7 +91,7 @@ public class DigitalClock extends Startable {
             onEffect.setInput(new InnerShadow());
             // create effect for on dot LEDs
             Glow onDotEffect = new Glow(1.7f);
-            onDotEffect.setInput(new InnerShadow(5,Color.BLACK));
+            onDotEffect.setInput(new InnerShadow(5, Color.BLACK));
             // create effect for off LEDs
             InnerShadow offEffect = new InnerShadow();
             // create digits
@@ -133,7 +133,8 @@ public class DigitalClock extends Startable {
             delayTimeline = new Timeline();
             delayTimeline.getKeyFrames().add(
                     new KeyFrame(new Duration(1000 - (System.currentTimeMillis() % 1000)), new EventHandler<ActionEvent>() {
-                        @Override public void handle(ActionEvent event) {
+                        @Override
+                        public void handle(ActionEvent event) {
                             if (secondTimeline != null) {
                                 secondTimeline.stop();
                             }
@@ -141,7 +142,8 @@ public class DigitalClock extends Startable {
                             secondTimeline.setCycleCount(Timeline.INDEFINITE);
                             secondTimeline.getKeyFrames().add(
                                     new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-                                        @Override public void handle(ActionEvent event) {
+                                        @Override
+                                        public void handle(ActionEvent event) {
                                             refreshClocks();
                                         }
                                     }));
@@ -152,7 +154,7 @@ public class DigitalClock extends Startable {
             delayTimeline.play();
         }
 
-        public void stop(){
+        public void stop() {
             delayTimeline.stop();
             if (secondTimeline != null) {
                 secondTimeline.stop();
@@ -194,7 +196,7 @@ public class DigitalClock extends Startable {
             this.onEffect = onEffect;
             this.offEffect = offEffect;
             getChildren().addAll(polygons);
-            getTransforms().add(new Shear(-0.1,0));
+            getTransforms().add(new Shear(-0.1, 0));
             showNumber(0);
         }
 

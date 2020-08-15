@@ -16,8 +16,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-@StartableMeta(title = "lesson045",category = CategoryType.LESSON,
-subtitle = "Slider")
+@StartableMeta(title = "lesson045", category = CategoryType.LESSON,
+        subtitle = "Slider")
 public class App extends Startable {
 
     @Override
@@ -25,15 +25,15 @@ public class App extends Startable {
 
         AnchorPane root = new AnchorPane();
 
-        Rectangle rect=new Rectangle();
+        Rectangle rect = new Rectangle();
 
-        ColorPicker cp=new ColorPicker();
+        ColorPicker cp = new ColorPicker();
         cp.setOnAction(event -> {
-           Color c=cp.getValue();
-           rect.setFill(c);
+            Color c = cp.getValue();
+            rect.setFill(c);
         });
 
-        Slider s=new Slider(0,200,0);
+        Slider s = new Slider(0, 200, 0);
         s.setShowTickLabels(true);//显示刻度值
         s.setShowTickMarks(true);//显示刻度
         s.setMajorTickUnit(20);//主要刻度单位
@@ -43,18 +43,18 @@ public class App extends Startable {
         s.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                double d=newValue.doubleValue();
+                double d = newValue.doubleValue();
                 rect.setWidth(d);
                 rect.setHeight(d);
             }
         });
 
-        VBox vBox=new VBox();
-        vBox.getChildren().addAll(s,cp,rect);
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(s, cp, rect);
 
         root.getChildren().add(vBox);
 
-        AppUtils.quickInit(primaryStage,  "lesson045", root);
+        AppUtils.quickInit(primaryStage, "lesson045", root);
         primaryStage.show();
     }
 

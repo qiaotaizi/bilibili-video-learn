@@ -15,8 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-@StartableMeta(title = "lesson046",category = CategoryType.LESSON,
-subtitle = "ProgressBar与ProgressIndicator")
+@StartableMeta(title = "lesson046", category = CategoryType.LESSON,
+        subtitle = "ProgressBar与ProgressIndicator")
 public class App extends Startable {
 
     ScheduledService<Double> ss;
@@ -26,27 +26,27 @@ public class App extends Startable {
 
         AnchorPane root = new AnchorPane();
 
-        Button btn=new Button("点我观察进度条变化");
-        Button reset=new Button("重置");
+        Button btn = new Button("点我观察进度条变化");
+        Button reset = new Button("重置");
 
         //ProgressBar未知进度时会有一个左右摇摆的效果
-        ProgressBar pb=new ProgressBar();
+        ProgressBar pb = new ProgressBar();
         //显式控制左右摇摆的效果
         pb.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
-        ProgressIndicator pi=new ProgressIndicator();
+        ProgressIndicator pi = new ProgressIndicator();
 
-        HBox hBox=new HBox();
-        hBox.getChildren().addAll(btn,pb,pi,reset);
+        HBox hBox = new HBox();
+        hBox.getChildren().addAll(btn, pb, pi, reset);
 
         root.getChildren().addAll(hBox);
 
         btn.setOnAction(event -> {
             btn.setDisable(true);
             reset.setDisable(true);
-            double initValue=0;
+            double initValue = 0;
             pb.setProgress(initValue);
             pi.setProgress(initValue);
-            ss=new ScheduledService<Double>() {
+            ss = new ScheduledService<Double>() {
                 @Override
                 protected Task<Double> createTask() {
                     return new Task<Double>() {
@@ -60,14 +60,14 @@ public class App extends Startable {
                         //JavaFX Application Thread
                         @Override
                         protected void updateValue(Double value) {
-                            if (value>=1.0){
+                            if (value >= 1.0) {
                                 ss.cancel();
                                 btn.setDisable(false);
                                 reset.setDisable(false);
                                 return;
                             }
                             super.updateValue(value);
-                            double newValue=value+0.01;
+                            double newValue = value + 0.01;
                             pi.setProgress(newValue);
                             pb.setProgress(newValue);
 

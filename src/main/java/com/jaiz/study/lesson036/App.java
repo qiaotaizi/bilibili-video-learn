@@ -23,8 +23,8 @@ import lombok.extern.slf4j.Slf4j;
  * 附加一些ObservableList的使用
  */
 @Slf4j
-@StartableMeta(title = "lesson036",category = CategoryType.LESSON,
-subtitle = "ChoiceBox")
+@StartableMeta(title = "lesson036", category = CategoryType.LESSON,
+        subtitle = "ChoiceBox")
 public class App extends Startable {
 
 
@@ -52,7 +52,7 @@ public class App extends Startable {
         cb.setOnAction(event -> {
             //获取被选中的对象
             Student stu = cb.getSelectionModel().getSelectedItem();
-            log.info("selected = {}",stu);
+            log.info("selected = {}", stu);
         });
 
         root.getChildren().add(cb);
@@ -71,12 +71,12 @@ public class App extends Startable {
         });
         ChoiceBox<City> cityChoiceBox = new ChoiceBox<>();
         cityChoiceBox.setConverter(
-            new SimplifiedStringConverter<>() {
-                @Override
-                public String toString(City city) {
-                    return city.getName();
+                new SimplifiedStringConverter<>() {
+                    @Override
+                    public String toString(City city) {
+                        return city.getName();
+                    }
                 }
-            }
         );
         provinceChoiceBox.setOnAction(event -> {
             Province province = provinceChoiceBox.getSelectionModel().getSelectedItem();

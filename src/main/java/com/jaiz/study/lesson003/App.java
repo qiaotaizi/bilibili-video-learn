@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Stage的一些主要api
- *
+ * <p>
  * 标题、Icon
  * 最小化、最大化
  * 关闭、展示
@@ -19,8 +19,8 @@ import lombok.extern.slf4j.Slf4j;
  * 全屏显示
  */
 @Slf4j
-@StartableMeta(title = "lesson003",category = CategoryType.LESSON,
-subtitle = "Stage",digest = {"标题、Icon","最大化、最小化","关闭、展示","初始宽高、最大最小宽高","窗口尺寸变化监听","全屏显示"})
+@StartableMeta(title = "lesson003", category = CategoryType.LESSON,
+        subtitle = "Stage", digest = {"标题、Icon", "最大化、最小化", "关闭、展示", "初始宽高、最大最小宽高", "窗口尺寸变化监听", "全屏显示"})
 public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -58,12 +58,12 @@ public class App extends Startable {
 
         //监听属性变化，以宽高为例
         //可以以此做自适应布局
-        primaryStage.heightProperty().addListener((observable,oldValue,newValue)->{
-            log.info("新的高度="+newValue.intValue());
+        primaryStage.heightProperty().addListener((observable, oldValue, newValue) -> {
+            log.info("新的高度=" + newValue.intValue());
         });
 
-        primaryStage.widthProperty().addListener((observable,oldValue,newValue)->{
-            log.info("新的宽度="+newValue.intValue());
+        primaryStage.widthProperty().addListener((observable, oldValue, newValue) -> {
+            log.info("新的宽度=" + newValue.intValue());
         });
 
         //设为全屏显示，默认false

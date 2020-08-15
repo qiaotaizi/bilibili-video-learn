@@ -10,5 +10,5 @@ public enum CategoryType {
      * 有趣的示例
      */
     EXAMPLE
-    
+
 }

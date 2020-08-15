@@ -17,8 +17,8 @@ import javafx.stage.Stage;
 /**
  * ComboBox
  */
-@StartableMeta(title = "lesson038",category = CategoryType.LESSON,
-subtitle = "ComboBox")
+@StartableMeta(title = "lesson038", category = CategoryType.LESSON,
+        subtitle = "ComboBox")
 public class App extends Startable {
 
 
@@ -27,9 +27,9 @@ public class App extends Startable {
 
         AnchorPane root = new AnchorPane();
 
-        ComboBox<Student> cb=new ComboBox<>();
+        ComboBox<Student> cb = new ComboBox<>();
 
-        ObservableList<Student> data= Repo.STUDENTS;
+        ObservableList<Student> data = Repo.STUDENTS;
         cb.setItems(data);
 
         cb.setFocusTraversable(false);

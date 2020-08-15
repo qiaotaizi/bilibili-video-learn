@@ -9,8 +9,8 @@ public class Main {
     public static void main(String[] args) {
         //字体渲染抗锯齿
         System.setProperty("prism.lcdtext", "false");
-        log.info("main线程名：{}",Thread.currentThread().getName());
+        log.info("main线程名：{}", Thread.currentThread().getName());
         Application.launch(Index.class, args);
     }
-    
+
 }

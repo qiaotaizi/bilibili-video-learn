@@ -12,9 +12,9 @@ public class StudentListCell extends ListCell<Student> {
     @Override
     protected void updateItem(Student item, boolean empty) {
         super.updateItem(item, empty);
-        if (!empty){
+        if (!empty) {
             this.setText(item.getName());
-            log.info("StudentListCell.updateItem"+item);
+            log.info("StudentListCell.updateItem" + item);
         }
     }
 }

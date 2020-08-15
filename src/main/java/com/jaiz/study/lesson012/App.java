@@ -14,17 +14,17 @@ import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@StartableMeta(title = "lesson012",category = CategoryType.LESSON,
-subtitle = "Tooltip"
-,digest = {"Tooltip","输入事件","选择事件","PromptText"})
+@StartableMeta(title = "lesson012", category = CategoryType.LESSON,
+        subtitle = "Tooltip"
+        , digest = {"Tooltip", "输入事件", "选择事件", "PromptText"})
 public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
 
-        Group root=new Group();
+        Group root = new Group();
 
-        TextField tf=new TextField();
+        TextField tf = new TextField();
 //        tf.setLayoutX();
 //        tf.setLayoutY();
 //        tf.setPrefHeight();
@@ -32,7 +32,7 @@ public class App extends Startable {
 //        tf.setFont();
 //        tf.setStyle();
         //鼠标悬停提示
-        Tooltip tt=new Tooltip();
+        Tooltip tt = new Tooltip();
         tt.setText("请输入xxx");
         tf.setTooltip(tt);
         tf.setPromptText("不超过7字符");
@@ -40,31 +40,29 @@ public class App extends Startable {
         tf.setFocusTraversable(false);
         //监听输入事件
         tf.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.length()>7){
+            if (newValue.length() > 7) {
                 tf.setText(oldValue);
             }
         });
         //监听文本选择
         tf.selectedTextProperty().addListener((observable, oldValue, newValue) -> {
-            log.info("selected="+newValue);
+            log.info("selected=" + newValue);
         });
 
 
-
-
         //密码框
-        PasswordField pf=new PasswordField();
+        PasswordField pf = new PasswordField();
         pf.setLayoutY(40);
         pf.setFocusTraversable(false);
         pf.setPromptText("请输入密码");
 
         //标签
-        Label l=new Label("一个标签");
+        Label l = new Label("一个标签");
         l.setLayoutY(80);
 
-        root.getChildren().addAll(tf,pf,l);
+        root.getChildren().addAll(tf, pf, l);
 
-        Scene scene=new Scene(root);
+        Scene scene = new Scene(root);
         primaryStage.setTitle("lesson012");
         primaryStage.setHeight(400);
         primaryStage.setWidth(600);

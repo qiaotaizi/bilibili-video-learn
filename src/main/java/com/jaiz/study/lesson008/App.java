@@ -14,19 +14,19 @@ import javafx.stage.Stage;
  * 将一些组件分组
  * 可以为它们设定某些共用的属性
  */
-@StartableMeta(title = "lesson008",category = CategoryType.LESSON,
-subtitle = "Group"
-,digest = {"组件分组","共用属性"})
+@StartableMeta(title = "lesson008", category = CategoryType.LESSON,
+        subtitle = "Group"
+        , digest = {"组件分组", "共用属性"})
 public class App extends Startable {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Group g=new Group();
+        Group g = new Group();
 
-        Button b1=new Button("b1");
-        Button b2=new Button("b2");
-        Button b3=new Button("b3");
+        Button b1 = new Button("b1");
+        Button b2 = new Button("b2");
+        Button b3 = new Button("b3");
 
         //LayoutXY是相对于父容器的位置
         b1.setLayoutX(20);
@@ -40,12 +40,12 @@ public class App extends Startable {
         b1.setManaged(true);
 
 
-        g.getChildren().addAll(b1,b2,b3);
+        g.getChildren().addAll(b1, b2, b3);
 
         //为组中元件设置统一的透明度
         g.setOpacity(0.5);
 
-        Scene scene=new Scene(g);
+        Scene scene = new Scene(g);
 
         primaryStage.setTitle("lesson008");
         primaryStage.setScene(scene);

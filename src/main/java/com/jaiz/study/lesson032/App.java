@@ -12,15 +12,15 @@ import javafx.stage.Stage;
 /**
  * TextArea
  */
-@StartableMeta(title = "lesson032",category = CategoryType.LESSON,
-subtitle = "TextArea")
+@StartableMeta(title = "lesson032", category = CategoryType.LESSON,
+        subtitle = "TextArea")
 public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        FlowPane root=new FlowPane();
+        FlowPane root = new FlowPane();
 
-        TextArea ta=new TextArea();
+        TextArea ta = new TextArea();
 
         //设置自动换行
         ta.setWrapText(true);
@@ -30,11 +30,10 @@ public class App extends Startable {
         ta.setPrefColumnCount(20);
 
 
-
         root.getChildren().add(ta);
 
 
-        AppUtils.quickInit(primaryStage,"lesson032",root);
+        AppUtils.quickInit(primaryStage, "lesson032", root);
         primaryStage.show();
     }
 }

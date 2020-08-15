@@ -35,5 +35,5 @@ public @interface StartableMeta {
      * 简单内容提要
      */
     String[] digest() default {};
-    
+
 }

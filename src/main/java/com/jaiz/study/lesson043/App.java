@@ -23,8 +23,8 @@ import lombok.extern.slf4j.Slf4j;
  * ColorPicker和DatePicker
  */
 @Slf4j
-@StartableMeta(title = "lesson043",category = CategoryType.LESSON,
-subtitle = "ColorPicker和DatePicker")
+@StartableMeta(title = "lesson043", category = CategoryType.LESSON,
+        subtitle = "ColorPicker和DatePicker")
 public class App extends Startable {
 
 
@@ -33,19 +33,19 @@ public class App extends Startable {
 
         AnchorPane root = new AnchorPane();
 
-        HBox hBox=new HBox();
-        ColorPicker cp=new ColorPicker();
-        DatePicker dp=new DatePicker();
-        Label label=new Label("我的颜色受ColorPicker控制");
+        HBox hBox = new HBox();
+        ColorPicker cp = new ColorPicker();
+        DatePicker dp = new DatePicker();
+        Label label = new Label("我的颜色受ColorPicker控制");
 
 
         cp.setOnAction(event -> {
-            Color c=cp.getValue();
+            Color c = cp.getValue();
             label.setTextFill(c);
         });
 
         dp.setOnAction(event -> {
-            LocalDate ld=dp.getValue();
+            LocalDate ld = dp.getValue();
             log.info(Formatters.DEFAULT.format(ld));
         });
 
@@ -53,11 +53,11 @@ public class App extends Startable {
         dp.setDayCellFactory(new Callback<DatePicker, DateCell>() {
             @Override
             public DateCell call(DatePicker param) {
-                return new DateCell(){
+                return new DateCell() {
                     @Override
                     public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
-                        this.setText(item.getDayOfMonth()+",农历XX");
+                        this.setText(item.getDayOfMonth() + ",农历XX");
                     }
                 };
             }
@@ -66,11 +66,11 @@ public class App extends Startable {
 
         dp.setEditable(false);
 
-        hBox.getChildren().addAll(cp,dp,label);
+        hBox.getChildren().addAll(cp, dp, label);
 
         root.getChildren().add(hBox);
 
-        AppUtils.quickInit(primaryStage,"lesson043" , root);
+        AppUtils.quickInit(primaryStage, "lesson043", root);
         primaryStage.show();
     }
 

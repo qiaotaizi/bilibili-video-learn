@@ -17,18 +17,18 @@ import lombok.extern.slf4j.Slf4j;
  * 通过TextFormatter限制输入内容
  */
 @Slf4j
-@StartableMeta(title = "lesson033",category = CategoryType.LESSON,
-subtitle = "TextFormatter")
+@StartableMeta(title = "lesson033", category = CategoryType.LESSON,
+        subtitle = "TextFormatter")
 public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        VBox root=new VBox();
+        VBox root = new VBox();
 
 
-        TextField textField=new TextField();
-        TextArea textArea=new TextArea();
-        root.getChildren().addAll(textField,textArea);
+        TextField textField = new TextField();
+        TextArea textArea = new TextArea();
+        root.getChildren().addAll(textField, textArea);
 
 
         /*
@@ -37,7 +37,7 @@ public class App extends Startable {
          */
         textField.setTextFormatter(new TextFormatter<>(change -> {
             //当输入内容满足小写英文字母时，响应内容变化，否则什么都不做
-            if (change.getText().matches("[a-z]*")){
+            if (change.getText().matches("[a-z]*")) {
                 return change;
             }
             return null;
@@ -69,7 +69,7 @@ public class App extends Startable {
         ));
 
 
-        AppUtils.quickInit(primaryStage, "lesson033",root);
+        AppUtils.quickInit(primaryStage, "lesson033", root);
         primaryStage.show();
     }
 }

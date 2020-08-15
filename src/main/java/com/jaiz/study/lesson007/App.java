@@ -18,18 +18,18 @@ import lombok.extern.slf4j.Slf4j;
  * 一般使用布局类对象作为根节点。
  */
 @Slf4j
-@StartableMeta(title = "lesson007",category = CategoryType.LESSON,
-subtitle="javafx层级关系"
-,digest = {"更改鼠标图片","hostServices"})
+@StartableMeta(title = "lesson007", category = CategoryType.LESSON,
+        subtitle = "javafx层级关系"
+        , digest = {"更改鼠标图片", "hostServices"})
 public class App extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Group root=new Group();
+        Group root = new Group();
 
-        Button b=new Button("点我访问百度");
+        Button b = new Button("点我访问百度");
         root.getChildren().add(b);
-        Scene scene=new Scene(root);
+        Scene scene = new Scene(root);
         //URL url=this.getClass().getResource("cursor.png");
         //String path=url.toExternalForm();
         //log.info(path);

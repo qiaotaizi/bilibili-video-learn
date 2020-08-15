@@ -25,11 +25,12 @@ public class AppUtils {
 
     /**
      * 快速设置stage的名称，尺寸，场景
+     *
      * @param stage
      * @param title
      * @param root
      */
-    public static void quickInit(Stage stage, String title, Parent root){
+    public static void quickInit(Stage stage, String title, Parent root) {
         stage.setTitle(title);
         stage.setHeight(400);
         stage.setWidth(600);
@@ -41,26 +42,27 @@ public class AppUtils {
      * 快速设置stage的一些基本特性
      * 默认调用stage.show()打开窗口
      * 支持command+q快速退出应用
+     *
      * @param stage
      * @param appClass
      * @param root
      */
     @Deprecated
-    public static void quickInitMenuBar(Stage stage, Class<? extends Application> appClass, Pane root){
+    public static void quickInitMenuBar(Stage stage, Class<? extends Application> appClass, Pane root) {
 
-        String title=titleByAppClassPackageName(appClass);
+        String title = titleByAppClassPackageName(appClass);
 
-        MenuBar menuBar=new MenuBar();
+        MenuBar menuBar = new MenuBar();
         menuBar.setUseSystemMenuBar(true);
-        Menu file=new Menu("File");
-        MenuItem close=new MenuItem("quit "+title);
+        Menu file = new Menu("File");
+        MenuItem close = new MenuItem("quit " + title);
         close.setAccelerator(KeyCombination.valueOf("Shortcut+q"));
         file.getItems().add(close);
-        Menu help=new Menu("Help");
-        MenuItem about=new MenuItem("about "+title);
+        Menu help = new Menu("Help");
+        MenuItem about = new MenuItem("about " + title);
         about.setAccelerator(KeyCombination.valueOf("Shortcut+,"));
         help.getItems().add(about);
-        menuBar.getMenus().addAll(file,help);
+        menuBar.getMenus().addAll(file, help);
 
         root.getChildren().add(menuBar);
 
@@ -69,44 +71,45 @@ public class AppUtils {
             log.info("cmd+q 退出stage");
         });
 
-        initAboutStage(stage,appClass,title);
+        initAboutStage(stage, appClass, title);
 
-        about.setOnAction(actionEvent->{
-            if (aboutStage.isShowing()){
+        about.setOnAction(actionEvent -> {
+            if (aboutStage.isShowing()) {
                 return;
             }
             aboutStage.show();
         });
 
-        quickInit(stage,title,root);
+        quickInit(stage, title, root);
         stage.show();
     }
 
     /**
      * 初始化aboutStage
+     *
      * @param stage
      * @param appClass
      */
-    private static void initAboutStage(Stage stage, Class<? extends Application> appClass,String title) {
-        aboutStage=new Stage();
+    private static void initAboutStage(Stage stage, Class<? extends Application> appClass, String title) {
+        aboutStage = new Stage();
         aboutStage.setTitle("小节说明");
 
-        AnchorPane root=new AnchorPane();
+        AnchorPane root = new AnchorPane();
 
-        Text aboutTitle=new Text("关于"+title);
+        Text aboutTitle = new Text("关于" + title);
         aboutTitle.setFont(Font.font(20));
 
-        TextArea aboutTA=new TextArea();
+        TextArea aboutTA = new TextArea();
         aboutTA.setEditable(false);
         aboutTA.setText(desc(appClass));
 
-        VBox vb=new VBox();
-        vb.getChildren().addAll(aboutTitle,aboutTA);
+        VBox vb = new VBox();
+        vb.getChildren().addAll(aboutTitle, aboutTA);
 
         root.getChildren().addAll(vb);
 
 
-        Scene scene=new Scene(root);
+        Scene scene = new Scene(root);
         aboutStage.setScene(scene);
         aboutStage.initModality(Modality.WINDOW_MODAL);
         aboutStage.initStyle(StageStyle.UTILITY);
@@ -115,6 +118,7 @@ public class AppUtils {
 
     /**
      * 从AppDesc注解抽取说明
+     *
      * @param appClass
      * @return
      */
@@ -126,13 +130,14 @@ public class AppUtils {
     /**
      * 根据App类的报名确定窗口Title
      * 暂时取package的最后一部分
+     *
      * @param appClass
      * @return
      */
     private static String titleByAppClassPackageName(Class<? extends Application> appClass) {
 
-        String[] arr=appClass.getPackageName().split("\\.");
-        return arr[arr.length-1];
+        String[] arr = appClass.getPackageName().split("\\.");
+        return arr[arr.length - 1];
 
     }
 }

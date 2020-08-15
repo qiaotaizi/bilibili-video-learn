@@ -22,8 +22,8 @@ import javafx.stage.Stage;
  * ChoiceBox另外一些用法
  * 修改ChoiceBox对象列表的内容
  */
-@StartableMeta(title = "lesson037",category = CategoryType.LESSON,
-subtitle = "ChoiceBox.Converter")
+@StartableMeta(title = "lesson037", category = CategoryType.LESSON,
+        subtitle = "ChoiceBox.Converter")
 public class App extends Startable {
 
 
@@ -77,7 +77,7 @@ public class App extends Startable {
 
         root.getChildren().add(hBox);
 
-        AppUtils.quickInit(primaryStage,  "lesson037", root);
+        AppUtils.quickInit(primaryStage, "lesson037", root);
         primaryStage.show();
     }
 }

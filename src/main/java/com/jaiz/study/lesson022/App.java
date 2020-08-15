@@ -25,8 +25,8 @@ import lombok.extern.slf4j.Slf4j;
  * ScheduledService
  */
 @Slf4j
-@StartableMeta(title = "lesson022",category = CategoryType.LESSON,
-subtitle = "DialogPane和ScheduledService")
+@StartableMeta(title = "lesson022", category = CategoryType.LESSON,
+        subtitle = "DialogPane和ScheduledService")
 public class App extends Startable {
 
     private ScheduledService<Integer> ss;

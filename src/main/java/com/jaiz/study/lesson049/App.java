@@ -15,8 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-@StartableMeta(title = "lesson048",category = CategoryType.LESSON,
-subtitle = "ScrollBar与ScrollBar，ScrollPane，Separator")
+@StartableMeta(title = "lesson048", category = CategoryType.LESSON,
+        subtitle = "ScrollBar与ScrollBar，ScrollPane，Separator")
 public class App extends Startable {
 
 
@@ -26,13 +26,12 @@ public class App extends Startable {
         AnchorPane root = new AnchorPane();
 
 
+        ScrollPane scrollPane = new ScrollPane();
 
-        ScrollPane scrollPane=new ScrollPane();
+        VBox vb = new VBox();
 
-        VBox vb=new VBox();
-
-        for (int i=0;i<30;i++){
-            Button btn=new Button("这是button。。。。。"+i);
+        for (int i = 0; i < 30; i++) {
+            Button btn = new Button("这是button。。。。。" + i);
             vb.getChildren().add(btn);
         }
 
@@ -43,18 +42,18 @@ public class App extends Startable {
 
         root.getChildren().add(scrollPane);
 
-        ScrollBar scrollBar=new ScrollBar();
+        ScrollBar scrollBar = new ScrollBar();
         scrollBar.setLayoutX(300);
         root.getChildren().add(scrollBar);
 
 
-        HBox hBox=new HBox();
+        HBox hBox = new HBox();
 
-        Button b1=new Button("b1");
-        Button b2=new Button("b2");
-        Separator sep=new Separator(Orientation.VERTICAL);
-        Button b3=new Button("b3");
-        hBox.getChildren().addAll(b1,b2,sep,b3);
+        Button b1 = new Button("b1");
+        Button b2 = new Button("b2");
+        Separator sep = new Separator(Orientation.VERTICAL);
+        Button b3 = new Button("b3");
+        hBox.getChildren().addAll(b1, b2, sep, b3);
         root.getChildren().add(hBox);
 
         hBox.setLayoutX(300);

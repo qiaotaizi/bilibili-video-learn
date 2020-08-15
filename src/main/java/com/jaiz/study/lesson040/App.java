@@ -25,11 +25,11 @@ import javafx.stage.Stage;
  * setCellFactory+ListCell动态修改数据
  * 性能上较37课的方式更加优秀
  * 而且ListCell、支持自定义选项样式
- *
+ * <p>
  * 注意ChoiceBox是不支持cellFactory的
  */
-@StartableMeta(title = "lesson040",category = CategoryType.LESSON,
-subtitle = "CellFactory与ListCell")
+@StartableMeta(title = "lesson040", category = CategoryType.LESSON,
+        subtitle = "CellFactory与ListCell")
 public class App extends Startable {
 
 
@@ -38,18 +38,18 @@ public class App extends Startable {
 
         AnchorPane root = new AnchorPane();
 
-        ComboBox<Student> comboBox=new ComboBox<>();
-        ObservableList<Student> data= Repo.STUDENTS;
-        HBox hBox=new HBox();
-        TextField tf=new TextField();
-        Button button=new Button("修改");
+        ComboBox<Student> comboBox = new ComboBox<>();
+        ObservableList<Student> data = Repo.STUDENTS;
+        HBox hBox = new HBox();
+        TextField tf = new TextField();
+        Button button = new Button("修改");
 
-        hBox.getChildren().addAll(comboBox,tf,button);
+        hBox.getChildren().addAll(comboBox, tf, button);
 
         comboBox.setItems(data);
 
         //选中项展示设置
-        ListCell<Student> buttonCell=new StudentListCell();
+        ListCell<Student> buttonCell = new StudentListCell();
 
         comboBox.setButtonCell(buttonCell);
 
@@ -59,18 +59,18 @@ public class App extends Startable {
         root.getChildren().add(hBox);
 
         comboBox.setOnAction(event -> {
-            SingleSelectionModel<Student> selectionModel=comboBox.getSelectionModel();
-            Student selected=selectionModel.getSelectedItem();
-            if (Objects.nonNull(selected)){
+            SingleSelectionModel<Student> selectionModel = comboBox.getSelectionModel();
+            Student selected = selectionModel.getSelectedItem();
+            if (Objects.nonNull(selected)) {
                 tf.setText(selected.getName());
             }
         });
 
         button.setOnAction(event -> {
-            SingleSelectionModel<Student> selectionModel=comboBox.getSelectionModel();
-            Student selected=selectionModel.getSelectedItem();
-            int selectedIndex=selectionModel.getSelectedIndex();
-            if (StringUtils.isNotBlank(tf.getText()) && Objects.nonNull(selected)){
+            SingleSelectionModel<Student> selectionModel = comboBox.getSelectionModel();
+            Student selected = selectionModel.getSelectedItem();
+            int selectedIndex = selectionModel.getSelectedIndex();
+            if (StringUtils.isNotBlank(tf.getText()) && Objects.nonNull(selected)) {
                 selected.setName(tf.getText());
                 selectionModel.clearSelection();
                 selectionModel.select(selectedIndex);

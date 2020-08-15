@@ -111,8 +111,8 @@ public class Index extends Application {
         inputLine.getChildren().addAll(searchTextField, clearBtn, backBtn);
 
         VBox container = new VBox();
-        VBox dataContainer=new VBox();
-        container.getChildren().addAll(inputLine,dataContainer);
+        VBox dataContainer = new VBox();
+        container.getChildren().addAll(inputLine, dataContainer);
         lookingForPane.getChildren().add(container);
 
         addSearchLineEvent(searchTextField, clearBtn, backBtn, dataContainer);
@@ -121,7 +121,7 @@ public class Index extends Application {
 
     /**
      * 为搜索行添加事件
-     * 
+     *
      * @param searchTextField
      * @param clearBtn
      * @param backBtn
@@ -138,13 +138,13 @@ public class Index extends Application {
             searchTextField.setText("");
             searchTextField.requestFocus();
         });
-        
+
         searchTextField.textProperty().addListener((ob, o, n) -> {
             List<Example> matchedData = filtingData(n);
-            var elems=container.getChildren();
+            var elems = container.getChildren();
             elems.clear();
-            matchedData.forEach(e->{
-                Hyperlink link=example2Link(e);
+            matchedData.forEach(e -> {
+                Hyperlink link = example2Link(e);
                 elems.add(link);
             });
         });
@@ -153,7 +153,7 @@ public class Index extends Application {
 
     /**
      * 根据关键字过滤数据
-     * 
+     *
      * @param keyword
      * @return
      */
@@ -171,7 +171,7 @@ public class Index extends Application {
 
     /**
      * 向scene添加快捷键监听事件
-     * 
+     *
      * @param scene
      */
     private void addQuickEvent(Scene scene) {
@@ -185,7 +185,7 @@ public class Index extends Application {
 
     /**
      * stage参数初始化
-     * 
+     *
      * @param primaryStage
      * @param scene
      */
@@ -200,7 +200,7 @@ public class Index extends Application {
 
     /**
      * 填充数据至accordion
-     * 
+     *
      * @param acc
      * @param accordionMap
      */
@@ -220,7 +220,7 @@ public class Index extends Application {
 
     /**
      * 将一个example转化为Hyperlink
-     * 
+     *
      * @param example
      * @return
      */
@@ -239,7 +239,7 @@ public class Index extends Application {
 
     /**
      * 添加跳转事件
-     * 
+     *
      * @param link
      * @param example
      */
@@ -275,7 +275,7 @@ public class Index extends Application {
 
     /**
      * 为ObservableList元素排序
-     * 
+     *
      * @param v
      * @return
      */
@@ -291,7 +291,7 @@ public class Index extends Application {
 
     /**
      * 初始化accordionMap 为每个CategoryType初始化一个ObservableList
-     * 
+     *
      * @return
      */
     private Map<CategoryType, ObservableList<Example>> initAccordionMap() {
@@ -319,13 +319,13 @@ public class Index extends Application {
 
     /**
      * 扫描指定包下的所有Startable实现类
-     * 
+     *
      * @param packageName
      * @return
      */
     @SuppressWarnings("unchecked") // 消除类型转换警告
     private void sweepStartable(String packageName, Map<CategoryType, ObservableList<Example>> accordionMap,
-            ClassLoader loader) {
+                                ClassLoader loader) {
         URL url = this.getClass().getClassLoader().getResource(packageName.replace(".", "/"));
         URI uri;
         try {

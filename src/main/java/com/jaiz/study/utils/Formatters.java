@@ -7,6 +7,6 @@ import java.time.format.DateTimeFormatter;
  */
 public class Formatters {
 
-    public static DateTimeFormatter DEFAULT=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static DateTimeFormatter DEFAULT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 }

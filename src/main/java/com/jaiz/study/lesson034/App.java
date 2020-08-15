@@ -23,8 +23,8 @@ import lombok.extern.slf4j.Slf4j;
  * 这里只实现关键字查找
  */
 @Slf4j
-@StartableMeta(title = "lesson034",category = CategoryType.LESSON,
-subtitle = "文本框关键字查找")
+@StartableMeta(title = "lesson034", category = CategoryType.LESSON,
+        subtitle = "文本框关键字查找")
 public class App extends Startable {
 
     @Override
@@ -62,22 +62,22 @@ public class App extends Startable {
             String sub = areaText.substring(cursorPos);
             int patternIndex = sub.indexOf(pattern);
             if (patternIndex == -1) {
-                Alert alert=new Alert(Alert.AlertType.ERROR);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("patter not found");
                 alert.showAndWait();
                 return;
             }
 
-            int anchor=cursorPos+sub.indexOf(pattern);
-            int caretPosition=pattern.length()+anchor;
-            log.info(anchor+","+caretPosition);
+            int anchor = cursorPos + sub.indexOf(pattern);
+            int caretPosition = pattern.length() + anchor;
+            log.info(anchor + "," + caretPosition);
 
-            find_ta.selectRange(anchor,caretPosition);
+            find_ta.selectRange(anchor, caretPosition);
 
             find_ta.requestFocus();
         });
 
-        AppUtils.quickInit(primaryStage,  "lesson034", root);
+        AppUtils.quickInit(primaryStage, "lesson034", root);
         primaryStage.show();
     }
 }

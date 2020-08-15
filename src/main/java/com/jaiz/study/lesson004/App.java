@@ -13,13 +13,12 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 继续学习stage api
- *
+ * <p>
  * 透明度 置顶
- *
  */
 @Slf4j
-@StartableMeta(title = "lesson004",category = CategoryType.LESSON,
-subtitle = "多窗口",digest = {"透明度","置顶","多窗口","窗口风格"})
+@StartableMeta(title = "lesson004", category = CategoryType.LESSON,
+        subtitle = "多窗口", digest = {"透明度", "置顶", "多窗口", "窗口风格"})
 public class App extends Startable {
 
     @Override
@@ -39,10 +38,10 @@ public class App extends Startable {
 
         // 监听窗口变化
         primaryStage.xProperty().addListener((observable, oldValue, newValue) -> {
-            log.info("新的X={}" , newValue.doubleValue());
+            log.info("新的X={}", newValue.doubleValue());
         });
         primaryStage.yProperty().addListener((observable, oldValue, newValue) -> {
-            log.info("新的Y={}" , newValue.doubleValue());
+            log.info("新的Y={}", newValue.doubleValue());
         });
 
         // 多窗口类型
@@ -83,7 +82,7 @@ public class App extends Startable {
 
         // 应用退出，直接关闭全部窗口
         // Platform.exit();
-        s1.setOnCloseRequest(event->{
+        s1.setOnCloseRequest(event -> {
             s2.close();
             s3.close();
             s4.close();
@@ -94,12 +93,13 @@ public class App extends Startable {
 
     /**
      * s2窗口是UNDECORATED风格，在上面展示一些内容
+     *
      * @param s2
      */
     private void showS2Sth(Stage s2) {
-        GridPane gp=new GridPane();
+        GridPane gp = new GridPane();
         gp.add(new Label("这是一个UNDECORATED风格的窗口"), 0, 0);
-        Scene scene=new Scene(gp);
+        Scene scene = new Scene(gp);
         s2.setScene(scene);
     }
 }

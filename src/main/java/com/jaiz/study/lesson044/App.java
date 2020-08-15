@@ -20,11 +20,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-@StartableMeta(title = "lesson044",category = CategoryType.LESSON,
-subtitle = "Pagination")
+@StartableMeta(title = "lesson044", category = CategoryType.LESSON,
+        subtitle = "Pagination")
 public class App extends Startable {
 
-    private Random generator=new Random();
+    private Random generator = new Random();
 
 
     @Override
@@ -32,7 +32,7 @@ public class App extends Startable {
 
         AnchorPane root = new AnchorPane();
 
-        Pagination page=new Pagination();
+        Pagination page = new Pagination();
 
         //当前页码索引（从零开始）
         page.setCurrentPageIndex(0);
@@ -49,18 +49,18 @@ public class App extends Startable {
             @Override
             public Node call(Integer param) {
 
-                List<Student> data= requestData(param);
-                VBox vBox=new VBox();
+                List<Student> data = requestData(param);
+                VBox vBox = new VBox();
 
                 data.forEach(
                         student -> {
-                            HBox hBox=new HBox();
-                            Label idLabel=new Label(student.getId()+"");
-                            Label nameLabel=new Label(student.getName());
-                            nameLabel.setPadding(new Insets(0,0,0,10));
-                            Label ageLabel=new Label(student.getAge()+"");
-                            ageLabel.setPadding(new Insets(0,0,0,10));
-                            hBox.getChildren().addAll(idLabel,nameLabel,ageLabel);
+                            HBox hBox = new HBox();
+                            Label idLabel = new Label(student.getId() + "");
+                            Label nameLabel = new Label(student.getName());
+                            nameLabel.setPadding(new Insets(0, 0, 0, 10));
+                            Label ageLabel = new Label(student.getAge() + "");
+                            ageLabel.setPadding(new Insets(0, 0, 0, 10));
+                            hBox.getChildren().addAll(idLabel, nameLabel, ageLabel);
                             vBox.getChildren().addAll(hBox);
                         }
                 );
@@ -77,15 +77,16 @@ public class App extends Startable {
 
     /**
      * 模拟数据请求
+     *
      * @param param
      * @return
      */
     private List<Student> requestData(Integer param) {
-        List<Student> data=new ArrayList<>(20);
-        int startIndex=param*20+1;
-        for (int i=startIndex;i<startIndex+20;i++){
+        List<Student> data = new ArrayList<>(20);
+        int startIndex = param * 20 + 1;
+        for (int i = startIndex; i < startIndex + 20; i++) {
             data.add(Student.builder().id(i)
-                    .name("学生"+generator.nextInt(100))
+                    .name("学生" + generator.nextInt(100))
                     .age(generator.nextInt(20))
                     .build());
         }

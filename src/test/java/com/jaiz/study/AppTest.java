@@ -15,25 +15,23 @@ import com.jaiz.study.lesson001.Lesson001;
  * Unit test for simple App.
  */
 @Slf4j
-public class AppTest 
-{
+public class AppTest {
     /**
      * Rigorous Test :-)
      */
     @Test
-    public void keyCodeTest()
-    {
-        log.info("SHORTCUT_DOWN kc = {}",KeyCombination.SHORTCUT_DOWN);
+    public void keyCodeTest() {
+        log.info("SHORTCUT_DOWN kc = {}", KeyCombination.SHORTCUT_DOWN);
     }
 
     /**
      * 获取系统变量
      */
     @Test
-    public void sysPropertiesTest(){
-        Properties properties=System.getProperties();
-        properties.forEach((k,v)->{
-            log.info(k+":"+v);
+    public void sysPropertiesTest() {
+        Properties properties = System.getProperties();
+        properties.forEach((k, v) -> {
+            log.info(k + ":" + v);
         });
     }
 
@@ -41,30 +39,30 @@ public class AppTest
      * 获取系统支持的字体
      */
     @Test
-    public void fontTest(){
-        log.info("Font.getDefault = {}",Font.getDefault());
+    public void fontTest() {
+        log.info("Font.getDefault = {}", Font.getDefault());
         for (String family : Font.getFamilies()) {
             log.info(family);
         }
     }
 
     @Test
-    public void formatPrintingTest(){
+    public void formatPrintingTest() {
         log.info(String.format("hello，%s, I'm %s, %d years old this year.", "world", "jaiz", 5));
     }
 
     @Test
-    public void packageNameTest(){
-        var packName=this.getClass().getPackageName();
+    public void packageNameTest() {
+        var packName = this.getClass().getPackageName();
         Assert.assertEquals("com.jaiz.study", packName);
     }
 
     @Test
-    public void childClassTest(){
-        Class<Lesson001> lesson001Class=Lesson001.class;
-        Class<Startable> startableClass=Startable.class;
-        boolean isAsignable=startableClass.isAssignableFrom(lesson001Class);
-        Assert.assertTrue("类型不匹配",isAsignable);
+    public void childClassTest() {
+        Class<Lesson001> lesson001Class = Lesson001.class;
+        Class<Startable> startableClass = Startable.class;
+        boolean isAsignable = startableClass.isAssignableFrom(lesson001Class);
+        Assert.assertTrue("类型不匹配", isAsignable);
     }
 
 }

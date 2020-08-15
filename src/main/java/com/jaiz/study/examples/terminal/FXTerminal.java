@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 还有一些问题没有解决： 1.怎么在输入命令后显示当前目录 2.vim类程序怎么处理 3.彩色输出怎么处理
- *
+ * <p>
  * 可以想办法参考一下idea是怎么实现Java程序和shell交互的
  */
 @Slf4j
@@ -141,7 +141,7 @@ public class FXTerminal extends Startable {
 
     /**
      * 窗口关闭时执行的逻辑
-     * 
+     *
      * @param primaryStage
      */
     private void onStageClosingSettings(Stage primaryStage) {

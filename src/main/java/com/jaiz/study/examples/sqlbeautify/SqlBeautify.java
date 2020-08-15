@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-@StartableMeta(title = "Sql美化器",category = CategoryType.EXAMPLE)
+@StartableMeta(title = "Sql美化器", category = CategoryType.EXAMPLE)
 public class SqlBeautify extends Startable {
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -23,27 +23,27 @@ public class SqlBeautify extends Startable {
         Thread.setDefaultUncaughtExceptionHandler(WarnHandler.getInstance());
         WarnHandler.getInstance().initWarnHandlerLater(primaryStage);
 
-        AnchorPane anchorPane=new AnchorPane();
-        VBox vBox=new VBox();
+        AnchorPane anchorPane = new AnchorPane();
+        VBox vBox = new VBox();
 
 
-        TextArea ta=new TextArea();
-        Button btn= new Button("格式化");
-        VBox.setMargin(btn,new Insets(20,0,0,0));
+        TextArea ta = new TextArea();
+        Button btn = new Button("格式化");
+        VBox.setMargin(btn, new Insets(20, 0, 0, 0));
 
         btn.setOnAction(event -> {
-            String text=ta.getText();
+            String text = ta.getText();
             //注意，当sql格式错误时，这里只是打印异常，并没有真正抛出
-            String beautified=SQLUtils.formatMySql(text);
+            String beautified = SQLUtils.formatMySql(text);
             ta.setText(beautified);
         });
 
-        vBox.getChildren().addAll(ta,btn);
+        vBox.getChildren().addAll(ta, btn);
         vBox.setAlignment(Pos.CENTER);
 
         anchorPane.getChildren().add(vBox);
 
-        Scene scene=new Scene(anchorPane);
+        Scene scene = new Scene(anchorPane);
 
         primaryStage.setTitle("SqlBeautify");
         primaryStage.setHeight(400);
