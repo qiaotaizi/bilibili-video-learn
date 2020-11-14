@@ -1,0 +1,18 @@
+.root{
+    -fx-alignment: top-center;
+    -fx-hgap: 5px;
+    -fx-vgap: 3px;
+    -fx-min-width: 900px;
+}
+
+.ele-v-box{
+    -fx-alignment: top-center;
+}
+
+.ele-v-box:hover{
+    -fx-effect: dropshadow(gaussian,gray,7,0.5,0,0);
+}
+
+.color-name-label{
+    -fx-font-size: 20px;
+}

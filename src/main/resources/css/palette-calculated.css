@@ -1,0 +1,5 @@
+/*声明计算出来的颜色*/
+.root{
+    textcolor: ladder(backgroundcolor,white 49%,black 50%);
+    textshadowcolor: ladder(backgroundcolor,lightgray 49%,darkgray 50%);
+}

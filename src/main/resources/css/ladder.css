@@ -1,0 +1,17 @@
+.root{
+    -fx-background-color: backgroundcolor;
+}
+
+.label{
+    -fx-text-fill: textcolor;
+    -fx-font-size: 20px;
+    -fx-cursor: hand;
+}
+
+.label:pressed{
+    -fx-effect: dropshadow(gaussian,textshadowcolor,10,0.5,3,2);
+}
+
+.label:hover{
+    -fx-effect: innershadow(gaussian,textshadowcolor,10,0.5,3,2);
+}

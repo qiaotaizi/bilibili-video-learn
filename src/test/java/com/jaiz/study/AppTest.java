@@ -1,5 +1,6 @@
 package com.jaiz.study;
 
+import javafx.css.Stylesheet;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.text.Font;
 import lombok.extern.slf4j.Slf4j;
@@ -7,9 +8,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.Enumeration;
 import java.util.Properties;
 
 import com.jaiz.study.lesson001.Lesson001;
+
+import javax.swing.text.Style;
+import javax.swing.text.html.StyleSheet;
 
 /**
  * Unit test for simple App.
@@ -63,6 +69,19 @@ public class AppTest {
         Class<Startable> startableClass = Startable.class;
         boolean isAsignable = startableClass.isAssignableFrom(lesson001Class);
         Assert.assertTrue("类型不匹配", isAsignable);
+    }
+
+    @Test
+    public void cssTest() {
+
+        StyleSheet sheet=new StyleSheet();
+        sheet.importStyleSheet(this.getClass().getClassLoader().getResource("css/ladder.css"));
+        Style style=sheet.getRule(".root");
+        System.out.println(style.getName());
+        Object o=style.getAttribute("bgc");
+        System.out.println(o);
+
+
     }
 
 }

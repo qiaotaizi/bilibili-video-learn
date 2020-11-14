@@ -1,0 +1,36 @@
+#your-rect{
+    -fx-fill: yellow;
+    -fx-stroke: green;
+    -fx-stroke-width: 5;
+    -fx-stroke-dash-array:12 2 4 2 ;
+    -fx-stroke-dash-offset:6 ;
+    -fx-stroke-line-cap: butt;
+    /*-fx-effect: innershadow(one-pass-box,black,20,0.8,0,0);*/
+}
+
+#linear-gradient-rect{
+    -fx-fill: linear-gradient(to bottom right ,red,black);
+}
+
+.drop-shadow{
+    -fx-effect: dropshadow(gaussian,gray,10,0.5,0,0);
+}
+
+.label-normal{
+    -fx-font-style: normal;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: rgba(255,0,0,0.5);
+}
+.label-italic{
+    -fx-font-style: italic;
+    -fx-font-weight: bolder;
+    -fx-font-size: 20px;
+    -fx-text-fill: rgba(0,244,200,0.3);
+}
+.label-oblique{
+    -fx-font-style: oblique;
+    -fx-font-weight: lighter;
+    -fx-font-size: 24px;
+    -fx-text-fill: rgba(123,128,255,0.7);
+}

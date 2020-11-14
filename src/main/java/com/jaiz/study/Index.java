@@ -50,6 +50,7 @@ public class Index extends Application {
     private ScrollPane root;
     private AnchorPane dataPane;
     private AnchorPane lookingForPane;
+    private TextField searchTextField;
 
     private Accordion accordion;
 
@@ -104,7 +105,7 @@ public class Index extends Application {
     private void lookingForPaneInit() {
         lookingForPane = new AnchorPane();
         HBox inputLine = new HBox();
-        TextField searchTextField = new TextField();
+        searchTextField = new TextField();
         searchTextField.setPromptText("请输入查找项");
         Button clearBtn = new Button("清除");
         Button backBtn = new Button("返回");
@@ -140,7 +141,7 @@ public class Index extends Application {
         });
 
         searchTextField.textProperty().addListener((ob, o, n) -> {
-            List<Example> matchedData = filtingData(n);
+            List<Example> matchedData = filteringData(n);
             var elems = container.getChildren();
             elems.clear();
             matchedData.forEach(e -> {
@@ -157,13 +158,15 @@ public class Index extends Application {
      * @param keyword
      * @return
      */
-    private List<Example> filtingData(String keyword) {
+    private List<Example> filteringData(String keyword) {
         var result = new ArrayList<Example>();
         if (StringUtils.isBlank(keyword)) {
             return result;
         }
+        //过滤时大小写不敏感
+        String lowerKey=keyword.toLowerCase();
         accordionMap.forEach((k, v) -> {
-            result.addAll(v.stream().filter(e -> e.getTitle().contains(keyword) || e.getSubtitle().contains(keyword))
+            result.addAll(v.stream().filter(e -> e.getTitle().toLowerCase().contains(lowerKey) || e.getSubtitle().toLowerCase().contains(lowerKey))
                     .collect(Collectors.toList()));
         });
         return result;
@@ -180,6 +183,8 @@ public class Index extends Application {
         scene.getAccelerators().put(kc_cmd_f, () -> {
             log.info("cmd+f fired");
             root.setContent(lookingForPane);
+            searchTextField.requestFocus();
+
         });
     }
 
