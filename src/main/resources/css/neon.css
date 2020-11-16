@@ -1,0 +1,37 @@
+#root{
+    /*设置pane背景色*/
+    -fx-background-color: black;
+    /*设置gridpane单元格中的元素居中*/
+    -fx-alignment: center;
+}
+
+#label{
+    /*设置字体大小*/
+    -fx-font-size: 30px;
+    /*设置字体颜色*/
+    -fx-text-fill: white;
+}
+
+#hBox{
+    -fx-background-color: linear-gradient(to right,#03a9f4 0%,#f441a5 133.2%,#ffeb3b 266.4%,#03a9f4 400%);
+    /*-fx-pref-width: 400px;*/
+    -fx-min-width: 400px;
+    -fx-min-height: 100px;
+    /*-fx-pref-height: 100px;*/
+    -fx-alignment: center;
+    -fx-background-radius: 50px;
+    -fx-background-size: 400%;
+    -fx-max-width: 400px;
+    -fx-max-height: 100px;
+}
+
+/*#label:hover{
+    -fx-animation: neon 8s infinite;
+}*/
+
+/*
+@keyframes neon {
+    100%{
+        -fx-background-position: -400% 0;
+    }
+}*/
