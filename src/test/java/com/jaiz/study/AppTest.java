@@ -1,6 +1,8 @@
 package com.jaiz.study;
 
-import javafx.css.Stylesheet;
+import com.jaiz.study.lesson051AndMore.Lesson055;
+import com.jaiz.study.lesson051AndMore.Lesson057;
+import com.jaiz.study.lesson051AndMore.Lesson059;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.text.Font;
 import lombok.extern.slf4j.Slf4j;
@@ -8,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.util.Enumeration;
 import java.util.Properties;
 
 import com.jaiz.study.lesson001.Lesson001;
@@ -82,6 +82,17 @@ public class AppTest {
         System.out.println(o);
 
 
+    }
+
+    @Test
+    public void bindTest(){
+        Lesson055.biDirectionBindingTest();
+        Lesson057.bindingPredicateTest();
+    }
+
+    @Test
+    public void whenTest(){
+        Lesson059.whenTest();
     }
 
 }
